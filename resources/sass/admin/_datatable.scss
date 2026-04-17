@@ -1,0 +1,206 @@
+.btn-group {
+
+    .btn, .btn-export {
+
+        background-color: white;
+        border-color: $gris-1;
+        color: $base;
+    }
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+    
+    max-width: 360px;
+    margin: 0 0 0 auto;
+
+    label {
+
+        display: flex;
+        align-items: center;
+        margin: 0;
+
+        input {
+            
+            background-color: white;
+            width: 100%;
+        }
+    }
+}
+
+table.table.dataTable {
+
+    border-collapse: collapse !important;
+    margin: 1rem 0;
+
+    thead th {
+        
+        color: $base;
+        border-top: 1px solid $gris-2;
+        border-bottom: 1px solid $gris-2;
+        background: none;
+    }
+    
+    tbody {
+
+        tr {
+
+            border-top: 1px solid $gris-1;
+            
+            &:last-child {
+                
+                border-bottom: 1px solid $gris-2;
+            }
+
+            td {
+
+                color: $base;
+                border: none;
+                background: none;
+                vertical-align: middle;
+                padding: 0.5rem;
+            }
+        }
+        
+        .no-padding {
+
+            padding: 0;
+            border: none;
+        }
+
+        div.slider {
+    
+            display: none;
+            background-color: #ffffff80;
+            border-radius: 1rem;
+            margin: 2rem 2rem 2rem;
+            padding: 1rem 2rem 2rem;
+        }
+    }
+
+    td.titulo {
+
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        a {
+
+            color: $base;
+
+            &:hover {
+
+                color: $rojo;
+            }
+        }
+    }
+
+    td.puntos {
+        
+        .puntos_total {
+
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: white;
+            background-color: $rojo-cl;
+            margin-right: 2.5rem;
+        }
+
+        .valoracion_mini_wrapper {
+
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+    
+            .valoracion_iniciales {
+    
+                @extend .square;
+                background-color: $gris-2;
+                color: white;
+            }
+    
+            .valoracion_puntos {
+    
+                @extend .square;
+                background-color: $gris-1;
+            }
+        }
+    }
+
+    td.dt-type-numeric, td.dt-type-date {
+        
+        padding-right: 30px;
+    }
+
+    & > tbody > tr.cat {
+
+        position: relative;
+
+        td:first-child {
+            
+            text-align: center;            
+            
+            &::before {
+
+                content: '';
+                font-size: 1.75rem;
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+            }
+        }
+
+        &-descartada, &-descartada + tr.no-padding {
+            
+            background-color: $gris-0;
+        }
+
+        &-descartada {
+
+            td:not(.no-padding) {
+
+                opacity: .45;
+            }
+
+            td:first-child::before {
+
+                content: '\f00d';
+                color: $gris-2;
+            }
+        }
+
+        &-preseleccionada, &-preseleccionada + tr.no-padding {
+            
+            background-color: $azul-cl;
+        }
+
+        &-preseleccionada {
+
+            td:first-child::before {
+
+                content: '\f00c';
+                color: $azul;
+            }
+        }
+
+        &-seleccionada, &-seleccionada + tr.no-padding {
+            
+            background-color: $verde-cl;
+        }
+
+        &-seleccionada {
+
+            td:first-child::before {
+
+                content: '\f560';
+                color: $verde;
+            }
+        }
+
+        &.incompleta {
+    
+            td:first-child::before {
+    
+                content: '\f071';
+                color: $rojo;
+            }
+        }
+    }
+}

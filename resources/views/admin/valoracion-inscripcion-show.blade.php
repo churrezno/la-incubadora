@@ -1,0 +1,1 @@
+<x-ecam.valoracion :idValoracion="$id" />

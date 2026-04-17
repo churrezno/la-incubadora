@@ -1,0 +1,45 @@
+.navbar {
+
+    &-header {
+    
+        background: linear-gradient(135deg, $rojo-osc 0%, $rojo 71.6%);
+    }
+
+    &-brand svg {
+
+        width: 180px;
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    &-collapse {
+        
+        flex-direction: column;
+        align-items: end;
+    }
+
+    &-nav {
+
+        --bs-nav-link-color: white;
+        --bs-nav-link-hover-color: white;
+
+        .nav-link, .nav-link.active {
+
+            color: white;
+            margin: 0 0 0 1rem;
+
+            &#settingsDropdown {
+
+                color: $base;
+            }
+        }
+
+        &-social {
+
+            .nav-link, .nav-link.active {
+
+                margin: 0 0 0 .5rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+.btn {
+
+    color: $base;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+
+    &-rojo {
+
+        color: white;
+        background-color: $rojo;
+        //margin-top: 1.5rem;
+
+        &:hover {
+
+            color: white;
+            background-color: $rojo-osc;
+        }
+    }
+
+    &-negro {
+
+        color: white;
+        background-color: $base;
+
+        &:hover {
+
+            color: white;
+            background-color: black;
+        }
+    }
+
+    &-filter {
+
+        background-color: white;
+        border: 1px solid $gris-1;
+        color: $base;
+
+        & > i {
+
+            font-size: 1.125rem;
+            margin-right: .5rem;
+
+            &.incompleta { color: $rojo; }
+            &.descartada { color: $gris-2; }
+            &.preseleccionada { color: $azul; }
+            &.seleccionada { color: $verde; }
+        }
+
+        &:hover {
+
+            background-color: $gris-0;
+            //border: 1px solid $gris-2;
+        }
+
+        &-wrapper {
+
+            display: inline-flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+    }
+}

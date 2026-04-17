@@ -1,0 +1,68 @@
+form {
+
+    label:not(.form-check-label):not(.custom-file-label) {
+
+        font-weight: 400;
+        margin-bottom: 0.25rem;
+    }
+
+    input:not([type="checkbox"]):not([type="radio"]), select {
+
+        margin-bottom: .375rem;
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .form {
+        &-control, &-select, &-check-input {
+
+            border-color: #CCC;
+            background-color: #fbfbfb;
+        }
+        &-control:not(input[type="file"]), &-select {
+            
+            min-height: 58px;
+        }
+    }
+
+    div:not(.form-floating) > label {
+
+        position: relative;
+        padding-right: .75rem;
+    }
+
+    h5 > label.required {
+
+        position: relative;
+        padding-right: .85rem;
+    }
+
+    .required {
+
+        &-tag {
+
+            display: inline-block;
+            position: relative;
+            padding-right: .75rem;
+        }
+
+        &::before {
+
+            content: '*';
+            color: $rojo;
+            position: absolute;
+            right: 0.25rem;
+        }
+    }
+
+    .checkbox-wrapper {
+
+        display: flex;
+        gap: .5rem;
+        align-items: baseline;
+    }
+
+    .ck.ck-editor .ck-content {
+        min-height: 250px;
+    }
+}

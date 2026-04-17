@@ -1,0 +1,29 @@
+.data_title {
+
+    font-weight: 500;
+    margin-bottom: 0.125rem;
+}
+
+.data_text {
+
+    font-size: 1.125rem;
+    margin-left: 0.5rem;
+    color: #777;
+}
+
+.portada {
+
+    max-width: 480px;
+    width: 100%;
+}
+
+a {
+
+    color: $rojo;
+    text-decoration: none;
+
+    &:hover {
+
+        color: $rojo-osc;
+    }
+}

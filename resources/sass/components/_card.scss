@@ -1,0 +1,95 @@
+.card {
+
+    overflow: hidden;
+    box-shadow: none;
+
+    .image-wrapper {
+
+        width: 100%;
+        height: 300px;
+
+        .portada {
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .ico-categoria {
+
+        width: 75px;
+        height: 75px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        clip-path: polygon(100% 0, 0 0, 100% 100%);
+
+        &::before {
+
+            content: '';
+            font-size: 1.75rem;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 10px;
+        }
+
+        &.cat {
+
+            &-descartada {
+                
+                background-color: $gris-0;
+
+                &::before {
+
+                    content: '\f00d';
+                    color: $gris-2;
+                }
+            }
+
+            &-preseleccionada {
+
+                background-color: $azul-cl;
+                
+                &::before {
+
+                    content: '\f00c';
+                    color: $azul;
+            }
+            }
+
+            &-seleccionada {
+                
+                background-color: $verde-cl;
+
+                &::before {
+
+                    content: '\f560';
+                    color: $verde;
+                }
+            }
+        }
+
+        &[class*="cat-sin-"] {
+
+            background: none;
+        }
+    }
+
+    [class*="cat-sin-"] {
+
+        background: none;
+    }
+
+    h3 {
+
+        font-size: 1.375rem;
+        font-weight: 500;
+    }
+
+    p {
+
+        font-size: .875rem;
+    }
+  }

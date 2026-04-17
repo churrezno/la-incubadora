@@ -1,0 +1,35 @@
+.toast {
+
+    &-header {
+
+        i {
+
+            font-size: 1.125rem;
+            margin-right: .5rem;
+        }
+
+        strong {
+
+            font-size: 1.125rem;
+        }
+    }
+
+    &.text-bg {
+
+        &-success {
+
+            color: $base !important;
+            background-color: #a4dd78 !important;
+        }
+
+        &-danger {
+
+            background-color: $rojo !important;
+        }
+
+        &-info {
+
+            background-color: #78affe !important;
+        }
+    }
+}

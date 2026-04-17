@@ -1,0 +1,10 @@
+.text-link {
+
+    color: $base;
+    text-decoration: none;
+    
+    &:hover {
+        
+        color: $rojo;
+    }
+}

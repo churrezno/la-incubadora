@@ -1,0 +1,57 @@
+.square {
+
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+
+    &-big {
+
+        @extend .square;
+        width: 50px;
+        height: 50px;
+        border-radius: 0.5rem;
+    }
+}
+
+.valoracion {
+    
+    &_wrapper {
+
+        display: flex;
+        margin-bottom: .5rem;
+
+        &_main {
+
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: .5rem;
+        }
+    }
+    
+    &_nombre {
+
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    
+    &_apartado {
+
+        flex: 0 0 100px;
+    }
+    
+    &_texto {
+
+        border-left: 1px dashed $gris-1;
+        padding-left: .5rem;
+    }
+    
+    &_puntos {
+
+        flex: 0 0 36px;
+        background-color: $gris-1;
+    }
+}

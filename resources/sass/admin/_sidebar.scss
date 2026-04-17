@@ -1,0 +1,76 @@
+.layout-navbar-fixed.layout-fixed .wrapper {
+
+    .sidebar-admin {
+
+        background-color: $rojo;
+
+        a.brand-link {
+
+            background-color: $rojo;
+            border-bottom: 1px solid $rojo-osc;
+            position: static;
+            text-decoration: none;
+            height: 95px;
+            display: flex;
+
+            .logo-ecam {
+
+                width: 120px;
+                max-width: 100%;
+                opacity: 1 !important;
+            }
+        }
+
+        &:hover {
+
+            a.brand-link {
+
+                width: 100% !important;
+            }
+        }
+
+        .sidebar {
+
+            margin-top: 0;
+            padding-top: 20px;
+
+            a, .nav-header {
+
+                color: white;
+            }
+
+            .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+                
+                background-color: $rojo-osc;
+            }
+
+            .nav-sidebar>.nav-item.menu-open>.nav-link,
+            .nav-sidebar>.nav-item:hover>.nav-link,
+            .nav-sidebar>.nav-item>.nav-link:focus {
+
+                background-color: $rojo-osc;
+            }
+
+            .nav-treeview>.nav-item>.nav-link {
+                
+                background: none;
+                color: white;
+                width: auto;
+                padding-left: 2.5rem;
+
+                &:hover, &:focus, &.active {
+
+                    background-color: rgb(147 17 47 / 50%);
+                }
+            }
+        }
+
+        .nav-item {
+
+            .fa-fw {
+                
+                margin-right: .5rem;
+            }
+        }
+    }
+}
