@@ -1,68 +1,75 @@
 <x-app-layout>
-    <section class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="rounded-4 border overflow-hidden" style="background: linear-gradient(135deg, #111111 0%, #1f1f1f 55%, #8c1414 100%);">
-                <div class="row g-0">
-                    <div class="col-lg-7">
-                        <div class="p-4 p-md-5 p-xl-6 text-white">
-                            <div class="small text-uppercase fw-semibold mb-3" style="letter-spacing: .18em; color: rgba(255,255,255,.7);">
-                                La Incubadora | ECAM
-                            </div>
-                            <h1 class="display-4 fw-bold lh-sm mb-4">
-                                Impulsa tu largometraje desde una convocatoria pensada para hacerlo crecer.
-                            </h1>
-                            <p class="fs-5 mb-3 text-white-50">
-                                Accede al espacio de inscripción de La Incubadora para registrar tu proyecto, completar la documentación y seguir el proceso de evaluación.
-                            </p>
-                            <p class="mb-4 text-white-50">
-                                Si ya tienes cuenta, puedes continuar donde lo dejaste. Si es tu primera vez, crea tu usuario y empieza la inscripción.
-                            </p>
+    <style>
+        .intro p {
+            font-size: 1.125em;
+        }
+        .intro h1 {
+            font-size: 3.5em;
+            line-height: 1;
+            margin-bottom: .5em;
+        }
+        .intro h1 small {
+            font-size: .65em;
+        }
+        .wrapper-option {
+            border-radius: 1.5em;
+            padding: 3em 3em 2em;
+            height: 100%;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        h4 {
+            font-size: 1.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: .5em;
+        }
 
-                            <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
-                                <a href="{{ route('login') }}" class="btn btn-light btn-lg px-4">
-                                    Acceder
-                                </a>
-                                <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg px-4">
-                                    Crear cuenta
-                                </a>
-                            </div>
+        .btn {
+            width: 360px;
+        }
+    </style>
+
+    <section>
+        <div class="container">
+            <div class="row intro">
+                <div class="col-md-8">
+                    <h1>
+                        <small>Bienvenidos a la</small><br />
+                        <strong>INCUBADORA 10</strong>
+                    </h1>
+                    <p>La Incubadora es un programa de capacitación y desarrollo de proyectos cinematográficos dirigido a productores emergentes residentes en España. El programa apoya a productores, que podrán participar a través de dos líneas distintas: <strong>La Incubadora – Desarrollo</strong> (para equipos formados por producción y dirección con un largometraje en desarrollo) y <strong>La Incubadora – Slate</strong> (para productoras emergentes que deseen desarrollar su carrera profesional y empresarial).</p>
+                    <p>Sus objetivos son fortalecer e impulsar el desarrollo profesional y personal de las productoras seleccionadas, brindarles apoyo, generar impacto en sus carreras y establecer una red sólida de conocimientos. La Incubadora busca incentivar la coproducción y la colaboración entre participantes, la transmisión de conocimiento entre pares y aspira a convertirse en una red colaborativa que trascienda la participación puntual en el programa.</p>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col col-md-6">
+                    <div class="wrapper-option bg-gris-0 ">
+                        <h4>La Incubadora - <strong>Desarrollo</strong></h4>
+                        <div class="txt">
+                            <p>Convocatoria para <strong>proyectos de largometraje en desarrollo.</strong> Podrán participar equipos formados por producción y dirección que cuenten con, al menos, una versión de guion. Si estás trabajando mano a mano con un director o directora, quieres darle un impulso mientras adquieres herramientas para afianzar tu carrera, este es el sitio.</p>
                         </div>
                     </div>
-
-                    <div class="col-lg-5">
-                        <div class="h-100 d-flex align-items-center" style="background: radial-gradient(circle at top, rgba(255,255,255,.18), transparent 55%), rgba(255,255,255,.06);">
-                            <div class="p-4 p-md-5">
-                                <div class="rounded-4 p-4 bg-white text-dark shadow-sm">
-                                    <div class="small text-uppercase fw-semibold txt-rojo mb-2">
-                                        Qué puedes hacer aquí
-                                    </div>
-                                    <div class="mb-3">
-                                        <h2 class="h5 mb-2">Gestiona tu candidatura</h2>
-                                        <p class="mb-0 text-muted">
-                                            Crea tu perfil, presenta tu proyecto y consulta el estado de tus inscripciones en un único espacio.
-                                        </p>
-                                    </div>
-                                    <hr>
-                                    <div class="mb-3">
-                                        <h2 class="h5 mb-2">Completa la información por pasos</h2>
-                                        <p class="mb-0 text-muted">
-                                            El formulario está organizado para que puedas guardar, revisar y terminar tu inscripción con calma.
-                                        </p>
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <h2 class="h5 mb-2">Consulta antes las bases</h2>
-                                        <p class="mb-0 text-muted">
-                                            Revisa los requisitos y la convocatoria antes de enviar tu proyecto para asegurarte de que todo está correcto.
-                                        </p>
-                                        <a href="{{ route('bases') }}" class="btn btn-rojo mt-3">
-                                            Ver bases
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="wrapper-option bg-gris-1 ">
+                        <h4>La Incubadora - <strong>Slate</strong></h4>
+                        <div class="txt">
+                            <p>Convocatoria para <strong>productoras emergentes</strong> que participarán a título individual o con su empresa. Si estás trabajando con slate de proyectos, quieres dar un salto en tu carrera y afianzar tu plan de negocio, este es el sitio.</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <a href="{{ route('register') }}" class="btn btn-rojo">Regístrate</a>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col">
+                    <h5>Si necesitas más info:</h5>
+                    <p>Puedes escribirnos a <a class="rojo" href="mailto:industria@ecam.es" target="_blank">industria@ecam.es</a> y te responderemos lo antes posible.</p>
                 </div>
             </div>
         </div>

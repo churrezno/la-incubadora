@@ -5,3 +5,15 @@
 .hidden {
     display: none;
 }
+
+.bg {
+    &-gris-0 {
+        background-color: $gris-0;
+    }
+    &-gris-1 {
+        background-color: $gris-1;
+    }
+    &-gris-2 {
+        background-color: $gris-2;
+    }
+}
