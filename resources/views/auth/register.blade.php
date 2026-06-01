@@ -10,8 +10,25 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
+                <div class="mb-4">
+                    <p class="mt-4 mb-1 required required-tag">Quiero inscribirme para:</p>
+                    <div class="form-check ms-3">
+                        <input class="form-check-input" type="radio" name="linea_incubadora" id="desarrollo" value="desarrollo">
+                        <label class="form-check-label" for="desarrollo">
+                            <strong>DESARROLLO</strong> (proyectos de largometraje)
+                        </label>
+                    </div>
+                    <div class="form-check ms-3">
+                        <input class="form-check-input" type="radio" name="linea_incubadora" id="slate" value="slate">
+                        <label class="form-check-label" for="slate">
+                            <strong>SLATE</strong> (productoras emergentes)
+                        </label>
+                    </div>
+                    <x-ecam.error name="linea_incubadora" />
+                </div>
+
                 <div class="mb-3">
-                    <x-label value="Nombre y apellido" />
+                    <x-label value="Nombre y apellido" class="required" />
 
                     <x-input class="{{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name"
                                  :value="old('name')" required autofocus autocomplete="name" />
@@ -19,7 +36,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-label value="{{ __('Email') }}" />
+                    <x-label value="{{ __('Email') }}" class="required" />
 
                     <x-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email"
                                  :value="old('email')" required />
@@ -27,7 +44,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-label value="{{ __('Password') }}" />
+                    <x-label value="{{ __('Password') }}" class="required" />
 
                     <x-input class="{{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
                                  name="password" required autocomplete="new-password" />
@@ -35,7 +52,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-label value="{{ __('Confirm Password') }}" />
+                    <x-label value="{{ __('Confirm Password') }}" class="required" />
 
                     <x-input class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
@@ -45,7 +62,7 @@
                         <div class="checkbox-wrapper">
                             <x-checkbox id="terms" name="terms" />
                             <label class="custom-control-label" for="terms">
-                                He leído y acepto las <a  class="txt-rojo" target="_blank" href="https://laincubadora.ecam-industria.es/bases">Bases Reguladoras de la Convocatoria de la 9ª Edición de la Incubadora - ECAM Industria</a> y la <a class="txt-rojo" target="_blank" href="https://laincubadora.ecam-industria.es/politica-privacidad">Política de Privacidad</a> y acepto el tratamiento de mis datos de carácter personal con la finalidad que en la misma se describe.
+                                He leído y acepto las <a  class="txt-rojo" target="_blank" href="https://laincubadora.ecam-industria.es/bases">Bases Reguladoras de la Convocatoria de la La Incubadora 10 - ECAM Industria</a> y la <a class="txt-rojo" target="_blank" href="https://laincubadora.ecam-industria.es/politica-privacidad">Política de Privacidad</a> y acepto el tratamiento de mis datos de carácter personal con la finalidad que en la misma se describe.
                             </label>
                             {{-- <label class="custom-control-label" for="terms">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
