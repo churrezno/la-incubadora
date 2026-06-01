@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('archivos');
 
         $this->call(RoleSeeder::class);
-        User::factory(25)->create();
+        User::factory(5)->create();
         $this->call(AdminSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ArchivoTipoSeeder::class);

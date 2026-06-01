@@ -15,7 +15,7 @@ class InscripcionSeeder extends Seeder
      */
     public function run(): void
     {        
-        $inscripciones = Inscripcion::factory(25)->create();
+        $inscripciones = Inscripcion::factory(5)->create();
 
         foreach ($inscripciones as $inscripcion) {
             Archivo::factory(1)->create([
