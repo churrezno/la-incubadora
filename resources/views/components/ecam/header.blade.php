@@ -13,6 +13,14 @@
             
             {{-- User --}}
             <ul class="navbar-nav">
+                @guest
+                    <x-nav-link href="{{ route('login') }}" style="color: black;">
+                        <i class="fa-solid fa-fw fa-user me-1"></i> Inicia sesión
+                    </x-nav-link>
+                @endguest
+            </ul>
+
+            <ul class="navbar-nav">
                 @auth
                     <x-dropdown id="settingsDropdown">
                     <x-slot name="trigger">

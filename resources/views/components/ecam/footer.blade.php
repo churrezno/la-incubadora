@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3">
-                <img src="{{ Storage::url('/images/logo_ECAM-industria.svg') }}" alt="ECAM" class="logo mb-3">
+                <img src="{{ Storage::url('/images/logo_La_Incubadora_negro.svg') }}" alt="ECAM" class="logo mb-3">
             </div>
             
             <div class="col-12 col-md-3">
@@ -20,15 +20,14 @@
                     28223 Pozuelo de Alarcón, Madrid
                 </p>
                     
-                <p>Horario de atención al público (recepción)<br>
+                {{-- <p>Horario de atención al público (recepción)<br>
                     lunes a jueves: 9:30 h a 18:00 h<br>
                     viernes: 9:30 h a 15:30 h
-                </p>
+                </p> --}}
             </div>
 
             <div class="col-12 col-md-3">
-                <p>Síguenos en<br>
-                    nuestras redes sociales
+                <p>Síguenos:
                 </p>
                 <ul class="navbar-nav">
                     <li>
