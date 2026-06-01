@@ -13,18 +13,18 @@
                 <div class="mb-4">
                     <p class="mt-4 mb-1 required required-tag">Quiero inscribirme para:</p>
                     <div class="form-check ms-3">
-                        <input class="form-check-input" type="radio" name="linea_incubadora" id="desarrollo" value="desarrollo">
+                        <input class="form-check-input" type="radio" name="rol_incubadora" id="solicitante" value="solicitante">
                         <label class="form-check-label" for="desarrollo">
                             <strong>DESARROLLO</strong> (proyectos de largometraje)
                         </label>
                     </div>
                     <div class="form-check ms-3">
-                        <input class="form-check-input" type="radio" name="linea_incubadora" id="slate" value="slate">
+                        <input class="form-check-input" type="radio" name="rol_incubadora" id="slate" value="slate">
                         <label class="form-check-label" for="slate">
                             <strong>SLATE</strong> (productoras emergentes)
                         </label>
                     </div>
-                    <x-ecam.error name="linea_incubadora" />
+                    <x-ecam.error name="rol_incubadora" />
                 </div>
 
                 <div class="mb-3">
