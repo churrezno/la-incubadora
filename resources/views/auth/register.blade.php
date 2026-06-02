@@ -11,7 +11,7 @@
                 @csrf
 
                 <div class="mb-4">
-                    <p class="mt-4 mb-1 required required-tag">Quiero inscribirme para:</p>
+                    <p class="mt-2 mb-1 required required-tag">Quiero inscribirme para:</p>
                     <div class="form-check ms-3">
                         <input class="form-check-input" type="radio" name="rol_incubadora" id="solicitante" value="solicitante">
                         <label class="form-check-label" for="desarrollo">
@@ -24,7 +24,7 @@
                             <strong>SLATE</strong> (productoras emergentes)
                         </label>
                     </div>
-                    <x-ecam.error name="rol_incubadora" />
+                    <x-input-error for="rol_incubadora"></x-input-error>
                 </div>
 
                 <div class="mb-3">
