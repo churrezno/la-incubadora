@@ -86,6 +86,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    // Relación uno a uno
+    public function slate() {
+
+        return $this->hasOne('App\Models\Slate');
+    }
 
     // Relación uno a muchos
     public function inscripciones() {

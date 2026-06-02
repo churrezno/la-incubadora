@@ -37,9 +37,9 @@ class Inscripcion extends Model
         return $this->belongsTo('App\Models\Categoria');
     }
 
-    public function archivos() {
-
-        return $this->hasMany('App\Models\Archivo');
+    public function archivos()
+    {
+        return $this->morphMany(Archivo::class, 'archivable');
     }
 
     public function archivo_tipo() {

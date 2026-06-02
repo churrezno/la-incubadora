@@ -19,7 +19,8 @@ class InscripcionSeeder extends Seeder
 
         foreach ($inscripciones as $inscripcion) {
             Archivo::factory(1)->create([
-                'inscripcion_id' => $inscripcion->id,
+                'archivable_id' => $inscripcion->id,
+                'archivable_type' => Inscripcion::class,
                 'archivo_tipo_id' => Archivo_tipo::all()->random()->id
             ]);
         }

@@ -309,7 +309,8 @@ class InscripcionController extends Controller
 
             Archivo::create([
                 'url' => $fileUrl,
-                'inscripcion_id' => $inscripcion->id,
+                'archivable_id' => $inscripcion->id,
+                'archivable_type' => Inscripcion::class,
                 'archivo_tipo_id' => $fileType,
             ]);
         }

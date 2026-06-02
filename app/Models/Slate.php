@@ -37,6 +37,11 @@ class Slate extends Model
         return $this->belongsTo('App\Models\Categoria');
     }
 
+    public function archivo()
+    {
+        return $this->morphOne(Archivo::class, 'archivable');
+    }
+
 
     public function puntuacion_total() {
 

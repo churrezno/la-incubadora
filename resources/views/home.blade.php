@@ -31,7 +31,7 @@
             <p>Ya has completado tu inscripción correctamente.</p>
         @else
             <p class="m-0">Aquí podrás inscribir tu perfil para convertirte en productor/a:</p>
-            <form action="{{ route('slates.store') }}" method="POST" autocomplete="off">
+            <form action="{{ route('slates.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
 
                 @csrf
                 
