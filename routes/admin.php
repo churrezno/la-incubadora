@@ -9,6 +9,7 @@ use App\Http\Controllers\AsignacionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InscripcionController;
 use App\Http\Controllers\RecycleBinController;
+use App\Http\Controllers\SlateController;
 use App\Http\Controllers\ValoracionController;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
@@ -23,6 +24,7 @@ Route::get('inscripcion/{inscripcion}', [InscripcionController::class, 'showToUs
 
 // Datatables
 Route::get('datatable/inscripciones', [DatatableController::class, 'inscripciones'])->name('datatable.inscripciones');
+Route::get('datatable/slates', [DatatableController::class, 'slates'])->name('datatable.slates');
 Route::get('datatable/valoraciones/{id}', [DatatableController::class, 'valoraciones'])->name('datatable.valoraciones');
 
 //Get all valoraciones
@@ -45,6 +47,12 @@ Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('admin'))
             Route::post('inscripciones/update-category/{inscripcion}', [InscripcionController::class, 'updateCategory']);
             Route::delete('inscripciones/{id}/force', [InscripcionController::class, 'forceDelete'])->name('inscripciones.forceDelete');
             Route::post('asignaciones', [AsignacionController::class, 'manage'])->name('asignaciones.manage');
+
+            // Slates
+            Route::get('slates', [SlateController::class, 'index'])->name('slates.index');
+            /* Route::post('inscripciones/update-category/{inscripcion}', [InscripcionController::class, 'updateCategory']);
+            Route::delete('inscripciones/{id}/force', [InscripcionController::class, 'forceDelete'])->name('inscripciones.forceDelete');
+            Route::post('asignaciones', [AsignacionController::class, 'manage'])->name('asignaciones.manage'); */
 
             // Datatables
             Route::get('datatable/users', [DatatableController::class, 'users'])->name('datatable.users');

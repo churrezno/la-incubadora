@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Asignacion;
 use App\Models\Inscripcion;
+use App\Models\Slate;
 use App\Models\User;
 use App\Models\Valoracion;
 use App\Observers\AsignacionObserver;
@@ -51,6 +52,14 @@ class EventServiceProvider extends ServiceProvider
                     'url' => 'admin/inscripciones',
                     'icon' => 'fa-solid fa-fw fa-video',
                     'label' => Inscripcion::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add([
+                    'text' => 'Slates',
+                    'url' => 'admin/slates',
+                    'icon' => 'fa-solid fa-fw fa-user',
+                    'label' => Slate::count(),
                     'label_color' => 'dark',
                 ]);
 
