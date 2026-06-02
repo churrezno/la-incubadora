@@ -16,5 +16,6 @@ class ArchivoTipoSeeder extends Seeder
         Archivo_tipo::create(['name' => 'Imagen proyecto']);
         Archivo_tipo::create(['name' => 'PDF guion']);
         Archivo_tipo::create(['name' => 'PDF info extra']);
+        Archivo_tipo::create(['name' => 'PDF Slate']);
     }
 }
