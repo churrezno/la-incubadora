@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\InscripcionController;
+use App\Http\Controllers\SlateController;
 use App\Models\Inscripcion;
+use App\Models\Slate;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
     $numInscripcionesUser = Inscripcion::where('user_id', auth()->id())->count();
+    $numSlatesUser = Slate::where('user_id', auth()->id())->count();
 
-    return view('home', compact('numInscripcionesUser'));
+    return view('home', compact('numInscripcionesUser', 'numSlatesUser'));
     // return view('convo-closed');
 })->name('home');
 
@@ -30,3 +33,7 @@ Route::get('inscripciones/create-step-three/{inscripcion}', [InscripcionControll
 Route::post('inscripciones/create-step-three/{inscripcion}', [InscripcionController::class, 'postCreateStepThree'])->name('inscripciones.create.step.three.post');
 
 Route::get('inscripcion/{inscripcion}', [InscripcionController::class, 'showToUser'])->name('inscripcion.show');
+
+
+// Create Slates
+Route::post('home', [SlateController::class, 'store'])->name('slates.store');
