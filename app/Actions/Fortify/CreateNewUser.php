@@ -20,10 +20,14 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
+            'rol_incubadora' => ['required'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ],
+        [
+            'rol_incubadora.required' => 'Por favor selecciona una opción (DESARROLLO o SLATE).',
         ])->validate();
 
         $user = User::create([
