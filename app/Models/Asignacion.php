@@ -21,11 +21,6 @@ class Asignacion extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function inscripcion() {
-
-        return $this->belongsTo('App\Models\Inscripcion');
-    }
-
     public function asignable() {
 
         return $this->morphTo();

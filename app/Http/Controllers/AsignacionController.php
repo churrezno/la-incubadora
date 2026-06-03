@@ -31,7 +31,6 @@ class AsignacionController extends Controller
                             'user_id' => $value,
                             'asignable_id' => $idSlate,
                             'asignable_type' => Slate::class,
-                            'inscripcion_id' => null,
                         ]);
                     }
                 }
@@ -68,7 +67,6 @@ class AsignacionController extends Controller
                             'user_id' => $value,
                             'asignable_id' => $idInscripcion,
                             'asignable_type' => Inscripcion::class,
-                            'inscripcion_id' => $idInscripcion,
                         ]);
                     }
                 }
