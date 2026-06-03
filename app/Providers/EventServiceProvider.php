@@ -7,6 +7,7 @@ use App\Models\Inscripcion;
 use App\Models\Slate;
 use App\Models\User;
 use App\Models\Valoracion;
+use App\Models\ValoracionSlate;
 use App\Observers\AsignacionObserver;
 use App\Observers\InscripcionObserver;
 use App\Observers\UserObserver;
@@ -56,18 +57,26 @@ class EventServiceProvider extends ServiceProvider
                 ]);
 
                 $event->menu->add([
+                    'text' => 'Valoraciones',
+                    'url' => 'admin/valoraciones',
+                    'icon' => 'fa-solid fa-fw fa-certificate',
+                    'label' => Valoracion::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add([
                     'text' => 'Slates',
                     'url' => 'admin/slates',
-                    'icon' => 'fa-solid fa-fw fa-user',
+                    'icon' => 'fa-solid fa-fw fa-money-bill-wave',
                     'label' => Slate::count(),
                     'label_color' => 'dark',
                 ]);
 
                 $event->menu->add([
-                    'text' => 'Valoraciones',
-                    'url' => 'admin/valoraciones',
+                    'text' => 'Valoraciones Slate',
+                    'url' => 'admin/valoraciones-slate',
                     'icon' => 'fa-solid fa-fw fa-certificate',
-                    'label' => Valoracion::count(),
+                    'label' => ValoracionSlate::count(),
                     'label_color' => 'dark',
                 ]);
 
@@ -87,6 +96,16 @@ class EventServiceProvider extends ServiceProvider
                     'text' => 'Inscripciones',
                     'url' => 'admin/inscripciones',
                     'icon' => 'fa-solid fa-fw fa-video',
+                    'label' => Slate::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add([
+                    'text' => 'Slates',
+                    'url' => 'admin/slates',
+                    'icon' => 'fa-solid fa-fw fa-money-bill-wave',
+                    'label' => Slate::count(),
+                    'label_color' => 'dark',
                 ]);
             }
         });

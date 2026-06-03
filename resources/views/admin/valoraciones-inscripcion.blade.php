@@ -52,9 +52,9 @@
     @endrole
 
     <div class="col col-md-8">
-        @foreach ($inscripcion->valoraciones as $valoracion)
-            {{-- Sólo visible para admin o current user --}}
-            @if ( $user->hasRole('admin') || $valoracion->asignacion?->user_id == $user->id )
+@foreach ($inscripcion->valoraciones as $valoracion)
+            {{-- Slo visible para admin o current user --}}
+            @if ($user && ($user->hasRole('admin') || $valoracion->asignacion?->user_id == $user->id))
                 <x-ecam.valoracion :idValoracion="$valoracion->id" />
             @endif
         @endforeach

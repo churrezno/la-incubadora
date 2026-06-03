@@ -1,1 +1,1 @@
-<x-ecam.valoracion :idValoracion="$id" />
+<x-ecam.valoracion :idValoracion="$model->id" />

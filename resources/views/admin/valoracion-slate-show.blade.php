@@ -1,0 +1,1 @@
+<x-ecam.valoracion-slate :idValoracion="$model->id" />

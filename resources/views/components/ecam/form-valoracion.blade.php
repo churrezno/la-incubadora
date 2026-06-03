@@ -5,7 +5,7 @@
 
 <h3 class="mt-5 mb-3">Valora esta inscripción:</h3>
 
-<form action="{{ route('valoracion.store', $asignacionID, $valoracion) }}" id="formValoracion"  method="POST" style="max-width: 960px;">
+<form action="{{ route('valoracion.store', $asignacionID) }}" id="formValoracion"  method="POST" style="max-width: 960px;">
 
     @csrf
 

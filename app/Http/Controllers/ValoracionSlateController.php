@@ -7,10 +7,9 @@ use Illuminate\Database\QueryException;
 use App\Http\Requests\StoreValoracionRequest;
 use App\Http\Requests\StoreValoracionSlateRequest;
 use App\Models\Asignacion;
-use App\Models\Valoracion;
 use App\Models\ValoracionSlate;
 
-class ValoracionController extends Controller
+class ValoracionSlateController extends Controller
 {
     public function index()
     {
@@ -18,7 +17,7 @@ class ValoracionController extends Controller
         $heads = [
             ['label' => 'Fecha'],
             ['label' => 'Comité'],
-            ['label' => 'Título', 'width' => 20],
+            ['label' => 'Productor/a', 'width' => 20],
             'Valoración',
         ];
 
@@ -27,13 +26,13 @@ class ValoracionController extends Controller
             'language' => [
                 'url' => asset('vendor/datatables-plugins/lang/datatables-es-ES.json')
             ],
-            'ajax' => [
-                'url' => route('datatable.all-valoraciones')
+'ajax' => [
+                'url' => route('datatable.all-valoraciones-slate'),
             ],
             'columns' => [
                 ['data' => 'fecha'],
                 ['data' => 'comite', 'width' => '100px'],
-                ['data' => 'titulo', 'class' => 'titulo'],
+                ['data' => 'productor', 'class' => 'titulo'],
                 ['data' => 'valoracion'],
             ],
             'pageLength' => 10,
@@ -52,12 +51,12 @@ class ValoracionController extends Controller
             ] 
         ];
 
-        return view('valoraciones.index', compact('heads', 'config'));
+        return view('valoraciones-slate.index', compact('heads', 'config'));
     }
     
 
     
-    public function store(StoreValoracionRequest $request, Asignacion $asignacion)
+    public function store(StoreValoracionSlateRequest $request, Asignacion $asignacion)
     {
         $editRequest = $request->merge(['asignacion_id' => $asignacion->id]);
         $idValoracion = $asignacion->valoracion?->id;
@@ -66,12 +65,12 @@ class ValoracionController extends Controller
         {
             if ( $idValoracion == null )
             {
-                $valoracion = Valoracion::create($editRequest->all());
+                $valoracion = ValoracionSlate::create($editRequest->all());
                 return redirect()->back()->with('info', 'Valoración creada correctamente :)');
             }
             else
             {
-                $valoracion = Valoracion::find($idValoracion);
+                $valoracion = ValoracionSlate::find($idValoracion);
                 $valoracion->update($request->except('asignacion_id'));
                 return redirect()->back()->with('info', 'Valoración actualizada correctamente :)');
             }
@@ -87,33 +86,6 @@ class ValoracionController extends Controller
             if($errorCode == 1062){
                 return redirect()->back()->with('info', 'Ooooooops!! Entrada ya existente :(');
             }
-        }
-
-    }
-
-
-    public function storeSlate(StoreValoracionSlateRequest $request, Asignacion $asignacion)
-    {
-        try
-        {
-            $existing = $asignacion->valoracionSlate;
-            
-            if ($existing) {
-                $existing->update($request->only(['comentarios', 'puntos']));
-            } else {
-                ValoracionSlate::create([
-                    'asignacion_id' => $asignacion->id,
-                    'comentarios' => $request->comentarios,
-                    'puntos' => $request->puntos,
-                ]);
-            }
-            
-            return redirect()->back()->with('info', 'Valoración guardada correctamente :)');
-
-        }   
-        catch (\Exception $e)
-        {
-            return redirect()->back()->with('error', 'Error al guardar la valoración: ' . $e->getMessage())->withInput();
         }
 
     }

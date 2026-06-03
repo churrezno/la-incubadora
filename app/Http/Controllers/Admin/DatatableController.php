@@ -7,6 +7,7 @@ use App\Models\Inscripcion;
 use App\Models\Slate;
 use App\Models\User;
 use App\Models\Valoracion;
+use App\Models\ValoracionSlate;
 
 class DatatableController extends Controller
 {
@@ -61,7 +62,7 @@ class DatatableController extends Controller
                 $categoria = $data->categoria?->name ?? 'sin-categoria';
                 $claseCategoria = 'cat cat-'.strtolower(str_replace(' ', '-', $categoria));
 
-                return $data->complete ? $claseCategoria : $claseCategoria.' incompleta';
+                return $claseCategoria;
             })
             ->toJson();
     }
@@ -95,12 +96,12 @@ class DatatableController extends Controller
             ->addColumn('puntos', 'admin.puntos-slate')
             ->addColumn('acciones', 'admin.acciones-slate')
             ->addColumn('valoraciones', 'admin.valoraciones-slate')
-            ->rawColumns(['titulo', 'puntos', 'acciones', 'valoraciones-slate'])
+            ->rawColumns(['puntos', 'acciones', 'valoraciones'])
             ->setRowClass(function ($data) {
                 $categoria = $data->categoria?->name ?? 'sin-categoria';
                 $claseCategoria = 'cat cat-'.strtolower(str_replace(' ', '-', $categoria));
 
-                return $data->complete ? $claseCategoria : $claseCategoria.' incompleta';
+                return $claseCategoria;
             })
             ->toJson();
     }
@@ -108,9 +109,13 @@ class DatatableController extends Controller
     public function valoraciones($id)
     {
 
-        $valoraciones = Inscripcion::findOrFail($id)
-            ->valoraciones()
-            ->with('asignacion.user:id,name');
+        $inscripcion = Inscripcion::findOrFail($id);
+
+        $valoraciones = Valoracion::with('asignacion.user:id,name')
+            ->whereHas('asignacion', function ($query) use ($inscripcion) {
+                $query->where('asignable_type', 'App\Models\Inscripcion')
+                      ->where('asignable_id', $inscripcion->id);
+            });
 
         $user = auth()->user();
 
@@ -130,9 +135,13 @@ class DatatableController extends Controller
     public function valoracionesSlate($id)
     {
 
-        $valoracionesSlate = Slate::findOrFail($id)
-            ->valoracionesSlate()
-            ->with('asignacion.user:id,name');
+        $slate = Slate::findOrFail($id);
+
+        $valoracionesSlate = ValoracionSlate::with('asignacion.user:id,name')
+            ->whereHas('asignacion', function ($query) use ($slate) {
+                $query->where('asignable_type', 'App\Models\Slate')
+                      ->where('asignable_id', $slate->id);
+            });
 
         $user = auth()->user();
 
@@ -162,9 +171,6 @@ class DatatableController extends Controller
             ->addColumn('fecha', function ($data) {
                 return $data->created_at->format('d/m/Y');
             })
-            ->addColumn('asignacion', function ($data) {
-                return $data->asignacion;
-            })
             ->addColumn('comite', function ($data) {
                 return $data->asignacion?->user?->name;
             })
@@ -179,6 +185,36 @@ class DatatableController extends Controller
             })
             ->addColumn('valoracion', 'admin.valoracion-inscripcion-show')
             ->rawColumns(['titulo', 'valoracion'])
+            ->toJson();
+    }
+
+    public function allValoracionesSlate()
+    {
+
+        $valoraciones = ValoracionSlate::with([
+            'asignacion.user:id,name',
+            'asignacion.asignable:id,productor',
+        ]);
+
+        return datatables()
+            ->eloquent($valoraciones)
+            ->addColumn('fecha', function ($data) {
+                return $data->created_at->format('d/m/Y');
+            })
+            ->addColumn('comite', function ($data) {
+                return $data->asignacion?->user?->name;
+            })
+            ->addColumn('productor', function ($data) {
+                $slate = $data->asignacion?->asignable;
+
+                if ($slate === null) {
+                    return '';
+                }
+
+                return '<a href=slates/'.$slate->id.'>'.$slate->productor.'</a>';
+            })
+            ->addColumn('valoracion', 'admin.valoracion-slate-show')
+            ->rawColumns(['productor', 'valoracion'])
             ->toJson();
     }
 

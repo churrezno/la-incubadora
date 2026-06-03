@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <x-ecam.buttons-filter-inscripciones />
+    <x-ecam.buttons-filter-slates />
 
     <x-adminlte-datatable id="tableSlates" :heads="$heads" :config="$config">
     </x-adminlte-datatable>
@@ -30,7 +30,7 @@
                     '</div>';
         }
 
-        function updateAsignaciones(event) {
+        function updateAsignacionesSlate(event) {
             event.preventDefault();
             let table = $('#tableSlates').DataTable( {
                             retrieve: true,
@@ -77,7 +77,7 @@
             });
         }
 
-        function updateCategoria(event, slateId) {
+        function updateCategoriaSlate(event, slateId) {
             event.preventDefault();
             let table = $('#tableSlates').DataTable( {
                             retrieve: true,

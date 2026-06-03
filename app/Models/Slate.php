@@ -24,12 +24,20 @@ class Slate extends Model
 
     public function asignaciones() {
 
-        return $this->hasMany('App\Models\Asignacion');
+        return $this->morphMany(Asignacion::class, 'asignable');
     }
 
-    public function valoraciones() {
+    public function valoracionesSlate()
+    {
+        return ValoracionSlate::whereHas('asignacion', function ($query) {
+            $query->where('asignable_type', 'App\Models\Slate')
+                  ->where('asignable_id', $this->id);
+        });
+    }
 
-        return $this->hasManyThrough('App\Models\Valoracion', 'App\Models\Asignacion');
+    public function getValoracionesSlateAttribute()
+    {
+        return $this->valoracionesSlate()->get();
     }
 
     public function categoria() {
@@ -43,22 +51,18 @@ class Slate extends Model
     }
 
 
+
     public function puntuacion_total() {
 
-        $valoraciones = $this->valoraciones;
-        $puntos_total = 0;
-        $numero_valoraciones = 0;
-        
-        foreach ($valoraciones as $valoracion) {
-            $puntos_total += $valoracion->puntos_total;
-            $numero_valoraciones++;
+        $valoraciones = $this->valoracionesSlate;
+        if ($valoraciones->isEmpty()) {
+            return '-';
         }
 
-        if ( $numero_valoraciones != 0 )
-            return round( $puntos_total / $numero_valoraciones, 1 );
-        else
-            return '-';
+        $puntos_total = $valoraciones->sum('puntos');
+        $numero_valoraciones = $valoraciones->count();
 
+        return round($puntos_total / $numero_valoraciones, 1);
     }
 
     public function checkComite($comiteId, $asignaciones) {

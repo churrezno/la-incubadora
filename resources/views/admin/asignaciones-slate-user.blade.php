@@ -7,7 +7,11 @@
         <ul class="nav flex-column">
         @foreach ($asignaciones as $asignacion)
             <li class="nav-item">
-                    {{$asignacion->inscripcion->titulo}}
+                @if ($asignacion->asignable_type === 'App\Models\Slate')
+                    Slate #{{ $asignacion->asignable_id }}
+                @elseif ($asignacion->inscripcion)
+                    {{ $asignacion->inscripcion->titulo }}
+                @endif
             </li>
             @endforeach
         </ul>

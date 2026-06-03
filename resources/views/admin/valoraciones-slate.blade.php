@@ -44,18 +44,18 @@
                         <option value="{{ $categoria->id }}" {{ ( $categoria->name == $slate->categoria->name ) ? 'selected' : '' }}>{{ $categoria->name }}</option>
                     @endforeach
                 </select>
-                <x-ecam.error name='categoria_id' />           
-                <input type="hidden" name="id_inscripcion" value="{{ $slate->id }}" />
+<x-ecam.error name='categoria_id' />
+                <input type="hidden" name="id_slate" value="{{ $slate->id }}" />
                 <button id="cat_slate_{{ $slate->id }}" class="btn btn-rojo mt-3" type="button" onclick="updateCategoriaSlate(event, {{$slate->id}})">Actualizar</button>
             </form>
         </div>
     @endrole
 
-    <div class="col col-md-8">
-        @foreach ($slate->valoraciones as $valoracion)
-            {{-- Sólo visible para admin o current user --}}
-            @if ( $user->hasRole('admin') || $valoracion->asignacion?->user_id == $user->id )
-                <x-ecam.valoracion :idValoracion="$valoracion->id" />
+<div class="col col-md-8">
+        @foreach ($slate->valoracionesSlate as $valoracion)
+            {{-- Slo visible para admin o current user --}}
+            @if ($user && ($user->hasRole('admin') || $valoracion->asignacion?->user_id == $user->id))
+                <x-ecam.valoracion-slate :idValoracion="$valoracion->id" />
             @endif
         @endforeach
     </div>
