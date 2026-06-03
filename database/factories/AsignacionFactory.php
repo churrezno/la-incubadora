@@ -4,11 +4,13 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\Asignacion;
 use App\Models\Inscripcion;
+use App\Models\Slate;
 use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Asignacion>
  */
 class AsignacionFactory extends Factory
 {
@@ -19,9 +21,15 @@ class AsignacionFactory extends Factory
      */
     public function definition(): array
     {
+        $types = [Inscripcion::class, Slate::class];
+        $type = fake()->randomElement($types);
+
         return [
             'user_id' => User::all()->random()->id,
-            'inscripcion_id' => Inscripcion::all()->random()->id
+            'asignable_type' => $type,
+            'asignable_id' => $type === Inscripcion::class
+                ? Inscripcion::all()->random()->id
+                : Slate::all()->random()->id,
         ];
     }
 }

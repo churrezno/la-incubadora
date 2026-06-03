@@ -6,21 +6,21 @@ use App\Models\Archivo;
 use App\Models\Archivo_tipo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Inscripcion;
+use App\Models\Slate;
 
-class InscripcionSeeder extends Seeder
+class SlateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {        
-        $inscripciones = Inscripcion::factory(10)->create();
+        $slates = Slate::factory(10)->create();
 
-        foreach ($inscripciones as $inscripcion) {
+        foreach ($slates as $slate) {
             Archivo::factory(1)->create([
-                'archivable_id' => $inscripcion->id,
-                'archivable_type' => Inscripcion::class,
+                'archivable_id' => $slate->id,
+                'archivable_type' => Slate::class,
                 'archivo_tipo_id' => Archivo_tipo::all()->random()->id
             ]);
         }

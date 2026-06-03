@@ -23,9 +23,12 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         User::factory(5)->create();
         $this->call(AdminSeeder::class);
+        $this->call(ComiteSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ArchivoTipoSeeder::class);
         $this->call(InscripcionSeeder::class);
+        $this->call(SlateSeeder::class);
         $this->call(AsignacionSeeder::class);
+        $this->call(ValoracionSlateSeeder::class);
     }
 }
