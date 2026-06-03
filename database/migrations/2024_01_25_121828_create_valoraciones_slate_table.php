@@ -16,7 +16,6 @@ return new class extends Migration
 
             $table->text('comentarios');
             $table->float('puntos', 3, 1);
-            $table->float('puntos_total', 3, 1);
 
             $table->unsignedBigInteger('asignacion_id')->unique();
 
