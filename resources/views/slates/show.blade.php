@@ -88,16 +88,16 @@
             <div class="row p-0">
                 <div class="col-6">
                     @if (isset($prev))
-                        <a class="text-link" href="{{ route('inscripciones.show', $prev->id) }}">
+                        <a class="text-link" href="{{ route('slates.show', $prev->id) }}">
                             <i class="fa-solid fa-fw fa-arrow-left"></i>
-                            {{ $prev->titulo }}
+                            {{ $prev->productor }}
                         </a>
                         @endif
                     </div>
                     <div class="col-6 text-right">
                         @if (isset($next))
-                        <a class="text-link" href="{{ route('inscripciones.show', $next->id) }}">
-                            {{ $next->titulo }}
+                        <a class="text-link" href="{{ route('slates.show', $next->id) }}">
+                            {{ $next->productor }}
                             <i class="fa-solid fa-fw fa-arrow-right"></i>
                         </a>
                     @endif
