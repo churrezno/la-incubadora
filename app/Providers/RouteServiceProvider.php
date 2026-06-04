@@ -48,7 +48,13 @@ class RouteServiceProvider extends ServiceProvider
                     'auth:sanctum',
                     config('jetstream.auth_session'),
                     'verified',
-                ])->group(base_path('routes/user.php'));
+                ])->group(base_path('routes/user-common.php'));
+
+                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('solicitante|inscrito'))
+                    ->group(base_path('routes/desarrollo.php'));
+
+                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('slate'))
+                    ->group(base_path('routes/slate.php'));
 
             });
         });
