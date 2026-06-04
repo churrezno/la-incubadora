@@ -17,13 +17,28 @@
             @csrf
             @honeypot
 
-            <div class="form-floating">
+            <div class="form-group mt-3">
+                <h5 class="mt-4">Destinatarios</h5>
+                <div class="form-check ms-3">
+                    <input class="form-check-input" type="radio" name="tipo" id="tipoDesarrollo" value="desarrollo" checked onchange="updateDestinatariosOptions()">
+                    <label class="form-check-label" for="tipoDesarrollo">Desarrollo</label>
+                </div>
+                <div class="form-check ms-3">
+                    <input class="form-check-input" type="radio" name="tipo" id="tipoSlate" value="slate" onchange="updateDestinatariosOptions()">
+                    <label class="form-check-label" for="tipoSlate">Slate</label>
+                </div>
+                <x-input-error for="tipo"></x-input-error>
+            </div>
+
+            <div class="form-floating mt-2">
                 <select name="destinatarios"
                         id="destinatarios"
                         class="form-select">
                     <option value="">- Selecciona -</option>
-                    <option value="excluidos {{ (old('destinatarios') =='excluidos') ? 'selected' : '' }}">Excluidos</option>
-                    <option value="preseleccionados {{ (old('destinatarios') =='preseleccionados') ? 'selected' : '' }}">Preseleccionados</option>
+                    <option value="descartados" data-tipo="desarrollo">Descartados Desarrollo ({{ $counts['desarrollo_descartados'] }})</option>
+                    <option value="preseleccionados" data-tipo="desarrollo">Preseleccionados Desarrollo ({{ $counts['desarrollo_preseleccionados'] }})</option>
+                    <option value="descartados" data-tipo="slate" class="d-none">Descartados Slate ({{ $counts['slate_descartados'] }})</option>
+                    <option value="preseleccionados" data-tipo="slate" class="d-none">Preseleccionados Slate ({{ $counts['slate_preseleccionados'] }})</option>
                 </select>
                 <label for="destinatarios">Destinatarios</label>
             </div>            
@@ -32,7 +47,7 @@
             <x-ecam.textarea-inscripcion
                         name="mensaje"
                         label="Mensaje"
-                        class="mt-3" />
+                        class="mt-4" />
             
             <button class="btn btn-rojo" type="submit">Enviar</button>
         </form>      
@@ -102,6 +117,23 @@
 @section('js')
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script>
+        function updateDestinatariosOptions() {
+            const tipo = document.querySelector('input[name="tipo"]:checked').value;
+            const select = document.getElementById('destinatarios');
+            const options = select.querySelectorAll('option');
+
+            options.forEach(option => {
+                if (option.value === '') return;
+                if (option.dataset.tipo === tipo) {
+                    option.classList.remove('d-none');
+                } else {
+                    option.classList.add('d-none');
+                }
+            });
+
+            select.value = '';
+        }
+
         if (document.getElementById('mensaje'))
             createCKEditor('mensaje', 5000);
 
