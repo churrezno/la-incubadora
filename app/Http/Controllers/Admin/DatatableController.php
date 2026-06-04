@@ -163,7 +163,7 @@ class DatatableController extends Controller
 
         $valoraciones = Valoracion::with([
             'asignacion.user:id,name',
-            'asignacion.inscripcion:id,titulo',
+            'asignacion.asignable:id,titulo',
         ]);
 
         return datatables()
