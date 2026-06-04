@@ -42,16 +42,19 @@
 
 @section('js')
     <script>
+        function reloadAllTables() {
+            $('#tableUsersTrash').DataTable({ retrieve: true }).ajax.reload(null, false);
+            $('#tableInscripcionesTrash').DataTable({ retrieve: true }).ajax.reload(null, false);
+            $('#tableSlatesTrash').DataTable({ retrieve: true }).ajax.reload(null, false);
+        }
+
         function restoreUser(id) {
-            let table = $('#tableUsersTrash').DataTable( {
-                                    retrieve: true,
-                                });
             $.ajax({
                     url: '/admin/papelera/user/' + id,
                     type: 'GET',
                     success: function(){
                         console.log('OK!');
-                        table.ajax.reload(null, false);
+                        reloadAllTables();
                         Swal.fire({
                                 toast: true,
                                 title: "Usuario restaurado!",
@@ -75,15 +78,12 @@
         }
 
         function restoreInscripcion(id) {
-            let table = $('#tableInscripcionesTrash').DataTable( {
-                                    retrieve: true,
-                                });
             $.ajax({
                     url: '/admin/papelera/inscripcion/' + id,
                     type: 'GET',
                     success: function(){
                         console.log('OK!');
-                        table.ajax.reload(null, false);
+                        reloadAllTables();
                         Swal.fire({
                                 toast: true,
                                 title: "Inscripción restaurada!",
@@ -107,15 +107,12 @@
         }
 
         function restoreSlate(id) {
-            let table = $('#tableSlatesTrash').DataTable( {
-                                    retrieve: true,
-                                });
             $.ajax({
                     url: '/admin/papelera/slate/' + id,
                     type: 'GET',
                     success: function(){
                         console.log('OK!');
-                        table.ajax.reload(null, false);
+                        reloadAllTables();
                         Swal.fire({
                                 toast: true,
                                 title: "Slate restaurado!",
@@ -151,8 +148,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var _token = document.getElementsByName("_token")[0].value;
-                    let tableUsersTrash = $('#tableUsersTrash').DataTable({ retrieve: true });
-                    let tableInscripcionesTrash = $('#tableInscripcionesTrash').DataTable({ retrieve: true });
                     
                     $.ajax({
                         url: '/admin/users/' + id + '/force',
@@ -163,8 +158,7 @@
                         },
                         success: function () {
                             console.log("Force removed id:" + id);
-                            tableUsersTrash.ajax.reload(null, false);
-                            tableInscripcionesTrash.ajax.reload(null, false);
+                            reloadAllTables();
                             Swal.fire({
                                 title: "Eliminado!",
                                 text: "Usuario eliminado permanentemente.",
@@ -201,8 +195,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var _token = document.getElementsByName("_token")[0].value;
-                    let tableUsersTrash = $('#tableUsersTrash').DataTable({ retrieve: true });
-                    let tableInscripcionesTrash = $('#tableInscripcionesTrash').DataTable({ retrieve: true });
                     
                     $.ajax({
                         url: '/admin/inscripciones/' + id + '/force',
@@ -213,8 +205,7 @@
                         },
                         success: function () {
                             console.log("Force removed id:" + id);
-                            tableUsersTrash.ajax.reload(null, false);
-                            tableInscripcionesTrash.ajax.reload(null, false);
+                            reloadAllTables();
                             Swal.fire({
                                 title: "Eliminado!",
                                 text: "Inscripción eliminada permanentemente.",
@@ -251,8 +242,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var _token = document.getElementsByName("_token")[0].value;
-                    let tableUsersTrash = $('#tableUsersTrash').DataTable({ retrieve: true });
-                    let tableSlatesTrash = $('#tableSlatesTrash').DataTable({ retrieve: true });
                     
                     $.ajax({
                         url: '/admin/slates/' + id + '/force',
@@ -263,8 +252,7 @@
                         },
                         success: function () {
                             console.log("Force removed id:" + id);
-                            tableUsersTrash.ajax.reload(null, false);
-                            tableSlatesTrash.ajax.reload(null, false);
+                            reloadAllTables();
                             Swal.fire({
                                 title: "Eliminado!",
                                 text: "Slate eliminado permanentemente.",
