@@ -7,7 +7,7 @@
         <ul class="nav flex-column">
         @foreach ($asignaciones as $asignacion)
             <li class="nav-item">
-                {{ $asignacion->asignable->productor }}
+                {{ $asignacion->asignable?->productor }}
             </li>
         @endforeach
         </ul>
