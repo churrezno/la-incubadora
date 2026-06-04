@@ -20,8 +20,9 @@ class DatatableController extends Controller
             ->eloquent($users)
             ->addColumn('acciones', 'admin.acciones-user')
             ->addColumn('inscripciones', 'admin.inscripciones-user')
-            ->addColumn('asignaciones', 'admin.asignaciones-user')
-            ->rawColumns(['acciones', 'inscripciones', 'asignaciones'])
+            ->addColumn('asig_desarrollo', 'admin.asignaciones-desarrollo-user')
+            ->addColumn('asig_slate', 'admin.asignaciones-slate-user')
+            ->rawColumns(['acciones', 'inscripciones', 'asig_desarrollo', 'asig_slate'])
             ->toJson();
     }
 

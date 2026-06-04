@@ -19,7 +19,8 @@ class UserController extends Controller
             'Email',
             'Rol',
             'Inscripciones',
-            'Asignaciones',
+            'Asig. Desarrollo',
+            'Asig. Slate',
             'Acción',
         ];
 
@@ -37,7 +38,8 @@ class UserController extends Controller
                 ['data' => 'email'],
                 ['data' => 'roles[0].name', 'width' => '120px'],
                 ['data' => 'inscripciones'],
-                ['data' => 'asignaciones'],
+                ['data' => 'asig_desarrollo'],
+                ['data' => 'asig_slate'],
                 ['data' => 'acciones', 'width' => '80px', 'sortable' => false, 'width' => '120px'],
             ],
             'pageLength' => 10,
