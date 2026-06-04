@@ -128,6 +128,12 @@ class UserController extends Controller
         $user = User::withTrashed()->findOrFail($id);
 
         try {
+            $user->asignaciones()->forceDelete();
+            $user->inscripciones()->forceDelete();
+            if ($user->slate) {
+                $user->slate->asignaciones()->forceDelete();
+                $user->slate->forceDelete();
+            }
             $user->forceDelete();
 
             return response()->json(['message' => 'Usuario eliminado permanentemente'], 200);

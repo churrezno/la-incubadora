@@ -153,10 +153,12 @@ class InscripcionController extends Controller
     // FORCE DELETE FROM THRASH BIN
     public function forceDelete($id)
     {
-        $user = Inscripcion::withTrashed()->findOrFail($id);
+        $inscripcion = Inscripcion::withTrashed()->findOrFail($id);
 
         try {
-            $user->forceDelete();
+            $inscripcion->asignaciones()->forceDelete();
+            $inscripcion->archivos()->delete();
+            $inscripcion->forceDelete();
 
             return response()->json(['message' => 'Inscripción eliminada permanentemente'], 200);
 

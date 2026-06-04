@@ -122,10 +122,12 @@ class SlateController extends Controller
     // FORCE DELETE FROM THRASH BIN
     public function forceDelete($id)
     {
-        $user = Slate::withTrashed()->findOrFail($id);
+        $slate = Slate::withTrashed()->findOrFail($id);
 
         try {
-            $user->forceDelete();
+            $slate->asignaciones()->forceDelete();
+            $slate->archivo()->delete();
+            $slate->forceDelete();
 
             return response()->json(['message' => 'Slate eliminado permanentemente'], 200);
 

@@ -132,9 +132,6 @@ class RecycleBinController extends Controller
 
         $this->restoreAsignacionesUser($user);
         $this->restoreValoracionesUser($user);
-        $this->restoreAsignacionesSlateUser($user);
-        $this->restoreValoracionesSlateUser($user);
-        
         $this->restoreInscripcionesUser($user);
         $this->restoreSlateUser($user);
 
@@ -198,24 +195,6 @@ class RecycleBinController extends Controller
 
 
     public function restoreValoracionesUser($user) {
-
-        $user->valoraciones()->withTrashed()->get()
-                ->each(function($valoracion) {
-                    $valoracion->restore();
-                });
-    }
-
-
-    public function restoreAsignacionesSlateUser($user) {
-
-        $user->asignaciones()->withTrashed()->get()
-                ->each(function($asignacion) {
-                    $asignacion->restore();
-                });
-    }
-
-
-    public function restoreValoracionesSlateUser($user) {
 
         $user->valoraciones()->withTrashed()->get()
                 ->each(function($valoracion) {
