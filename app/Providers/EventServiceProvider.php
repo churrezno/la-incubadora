@@ -40,13 +40,7 @@ class EventServiceProvider extends ServiceProvider
             $user = auth()->user();
 
             if ($user->hasRole('admin')) {
-                $event->menu->add([
-                    'text' => 'Usuarios',
-                    'url' => 'admin/users',
-                    'icon' => 'fa-solid fa-fw fa-user',
-                    'label' => User::count(),
-                    'label_color' => 'dark',
-                ]);
+                $event->menu->add(['header' => 'DESARROLLO']);
 
                 $event->menu->add([
                     'text' => 'Inscripciones',
@@ -59,13 +53,15 @@ class EventServiceProvider extends ServiceProvider
                 $event->menu->add([
                     'text' => 'Valoraciones',
                     'url' => 'admin/valoraciones',
-                    'icon' => 'fa-solid fa-fw fa-certificate',
+                    'icon' => 'fa-solid fa-fw fa-star-half-stroke',
                     'label' => Valoracion::count(),
                     'label_color' => 'dark',
                 ]);
 
+                $event->menu->add(['header' => 'SLATE']);
+
                 $event->menu->add([
-                    'text' => 'Slates',
+                    'text' => 'Productores',
                     'url' => 'admin/slates',
                     'icon' => 'fa-solid fa-fw fa-money-bill-wave',
                     'label' => Slate::count(),
@@ -73,10 +69,20 @@ class EventServiceProvider extends ServiceProvider
                 ]);
 
                 $event->menu->add([
-                    'text' => 'Valoraciones Slate',
+                    'text' => 'Valoraciones',
                     'url' => 'admin/valoraciones-slate',
-                    'icon' => 'fa-solid fa-fw fa-certificate',
+                    'icon' => 'fa-solid fa-fw fa-ranking-star',
                     'label' => ValoracionSlate::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add(['header' => 'ADMINISTRACION']);
+
+                $event->menu->add([
+                    'text' => 'Usuarios',
+                    'url' => 'admin/users',
+                    'icon' => 'fa-solid fa-fw fa-user',
+                    'label' => User::count(),
                     'label_color' => 'dark',
                 ]);
 

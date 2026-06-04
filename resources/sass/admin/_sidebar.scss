@@ -2,12 +2,15 @@
 
     .sidebar-admin {
 
-        background-color: $rojo;
+        background-color: $gris-1;
+        //background-color: $rojo;
 
         a.brand-link {
 
-            background-color: $rojo;
-            border-bottom: 1px solid $rojo-osc;
+            background-color: $gris-1;
+            //background-color: $rojo;
+            border: none;
+            //border-bottom: 1px solid $rojo-osc;
             position: static;
             text-decoration: none;
             height: 95px;
@@ -36,33 +39,43 @@
 
             a, .nav-header {
 
-                color: white;
+                color: black;
+                //color: white;
             }
 
             .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
                 
-                background-color: $rojo-osc;
+                background-color: white;
+                //background-color: $rojo-osc;
             }
 
             .nav-sidebar>.nav-item.menu-open>.nav-link,
             .nav-sidebar>.nav-item:hover>.nav-link,
             .nav-sidebar>.nav-item>.nav-link:focus {
 
-                background-color: $rojo-osc;
+                background-color: $gris-0;
+                //background-color: $rojo-osc;
             }
 
             .nav-treeview>.nav-item>.nav-link {
                 
                 background: none;
-                color: white;
+                color: black;
+                //color: white;
                 width: auto;
                 padding-left: 2.5rem;
 
                 &:hover, &:focus, &.active {
 
-                    background-color: rgb(147 17 47 / 50%);
+                    background-color: $gris-0;
+                    //background-color: rgb(147 17 47 / 50%);
                 }
             }
+        }
+
+        .nav-header {
+            font-weight: 600;
+            margin-top: 16px;
         }
 
         .nav-item {

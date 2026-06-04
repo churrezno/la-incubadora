@@ -65,7 +65,7 @@ return [
     */
 
     'logo' => '',
-    'logo_img' => 'storage/images/logo_La_Incubadora.svg',
+    'logo_img' => 'storage/images/logo_La_Incubadora_negro_H.svg',
     'logo_img_class' => 'logo-ecam',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
