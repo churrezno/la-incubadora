@@ -92,7 +92,7 @@ class DatatableController extends Controller
                 return $data->created_at->format('d/m/Y');
             })
             ->addColumn('productor', function ($data) {
-                return $data->user?->name;
+                return $data->productor;
             })
             ->addColumn('puntos', 'admin.puntos-slate')
             ->addColumn('acciones', 'admin.acciones-slate')
@@ -239,6 +239,18 @@ class DatatableController extends Controller
         return datatables()
             ->eloquent($users)
             ->addColumn('acciones', 'admin.acciones-inscripcion-trash')
+            ->rawColumns(['acciones'])
+            ->toJson();
+    }
+
+    public function slatesTrash()
+    {
+
+        $users = Slate::onlyTrashed()->select('id', 'productor');
+
+        return datatables()
+            ->eloquent($users)
+            ->addColumn('acciones', 'admin.acciones-slate-trash')
             ->rawColumns(['acciones'])
             ->toJson();
     }

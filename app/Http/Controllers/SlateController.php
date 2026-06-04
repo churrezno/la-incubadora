@@ -112,6 +112,28 @@ class SlateController extends Controller
             ->with('next', $next);
     }
 
+    public function destroy(Slate $slate)
+    {
+        $slate->delete();
+
+        return redirect()->route('slates.index')->with('info', 'Slate eliminado :)');
+    }
+
+    // FORCE DELETE FROM THRASH BIN
+    public function forceDelete($id)
+    {
+        $user = Slate::withTrashed()->findOrFail($id);
+
+        try {
+            $user->forceDelete();
+
+            return response()->json(['message' => 'Slate eliminado permanentemente'], 200);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al eliminar el slate'], 500);
+        }
+    }
+
 
     public function uploadFile($request, $slate, $inputName, $fileType)
     {

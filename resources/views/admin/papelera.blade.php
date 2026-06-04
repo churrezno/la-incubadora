@@ -24,6 +24,13 @@
         </h3>
         <x-adminlte-datatable id="tableInscripcionesTrash" :heads="$headsInscripciones" :config="$configInscripciones">
         </x-adminlte-datatable>
+        
+        <h3 class="mt-5 mb-2">
+            <i class="fa-solid me-2 fa-money-bill-wave "></i>
+            Slates
+        </h3>
+        <x-adminlte-datatable id="tableSlatesTrash" :heads="$headsSlates" :config="$configSlates">
+        </x-adminlte-datatable>
     </div>
 
 @stop
@@ -80,6 +87,38 @@
                         Swal.fire({
                                 toast: true,
                                 title: "Inscripción restaurada!",
+                                position: "top-end",
+                                showConfirmButton: false,
+                                icon: "success",
+                                timer: 2000
+                            });
+                    },
+                    error: function (data) {
+                        Swal.fire({
+                                title: "Error!",
+                                text: "Algo salió mal.",
+                                position: "top-end",
+                                showConfirmButton: false,
+                                icon: "error",
+                                timer: 2000
+                            });
+                    }
+                });
+        }
+
+        function restoreSlate(id) {
+            let table = $('#tableSlatesTrash').DataTable( {
+                                    retrieve: true,
+                                });
+            $.ajax({
+                    url: '/admin/papelera/slate/' + id,
+                    type: 'GET',
+                    success: function(){
+                        console.log('OK!');
+                        table.ajax.reload(null, false);
+                        Swal.fire({
+                                toast: true,
+                                title: "Slate restaurado!",
                                 position: "top-end",
                                 showConfirmButton: false,
                                 icon: "success",
@@ -179,6 +218,56 @@
                             Swal.fire({
                                 title: "Eliminado!",
                                 text: "Inscripción eliminada permanentemente.",
+                                showConfirmButton: false,
+                                icon: "success",
+                                timer: 1500
+                            });
+                        },
+                        error: function (data) {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "No se pudo eliminar permanentemente.",
+                                showConfirmButton: false,
+                                icon: "error",
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+
+        function forceRemoveSlate(id) {
+            Swal.fire({
+                title: "¿Eliminar DEFINITIVAMENTE el Slate con id = " + id + "?",
+                text: "Esta acción eliminará permanentemente el slate de la base de datos.",
+                icon: "warning",
+                iconColor: '#FC1048',
+                showCancelButton: true,
+                confirmButtonColor: "#a4dd78",
+                cancelButtonColor: "#FC1048",
+                confirmButtonText: "Eliminar permanentemente"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var _token = document.getElementsByName("_token")[0].value;
+                    let tableUsersTrash = $('#tableUsersTrash').DataTable({ retrieve: true });
+                    let tableSlatesTrash = $('#tableSlatesTrash').DataTable({ retrieve: true });
+                    
+                    $.ajax({
+                        url: '/admin/slates/' + id + '/force',
+                        type: 'POST',
+                        data: {
+                            _token: _token,
+                            _method: 'delete'
+                        },
+                        success: function () {
+                            console.log("Force removed id:" + id);
+                            tableUsersTrash.ajax.reload(null, false);
+                            tableSlatesTrash.ajax.reload(null, false);
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "Slate eliminado permanentemente.",
                                 showConfirmButton: false,
                                 icon: "success",
                                 timer: 1500
