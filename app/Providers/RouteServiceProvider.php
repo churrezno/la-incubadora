@@ -50,10 +50,10 @@ class RouteServiceProvider extends ServiceProvider
                     'verified',
                 ])->group(base_path('routes/user-common.php'));
 
-                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('solicitante|inscrito'))
+                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('solicitante|inscrito|admin'))
                     ->group(base_path('routes/desarrollo.php'));
 
-                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('slate'))
+                Route::middleware(\Spatie\Permission\Middleware\RoleMiddleware::using('slate|admin'))
                     ->group(base_path('routes/slate.php'));
 
             });
