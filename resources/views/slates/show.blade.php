@@ -14,9 +14,9 @@
 
 <div class="container ms-0 pt-3">
     @role('admin')
-        {{-- <div class="clearfix">
-            <a href="{{ route('inscripciones.create.step.one', $slate->id) }}" class="btn btn-filter mt-3 mb-3 float-right">Editar inscripción</a>
-        </div> --}}
+        <div class="clearfix">
+            <a href="{{ route('slates.edit', $slate->id) }}" class="btn btn-filter mt-3 mb-3 float-right">Editar Slate</a>
+        </div>
     @endrole
 
 

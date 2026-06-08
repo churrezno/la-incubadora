@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SlateRequest;
+use App\Http\Requests\UpdateSlateRequest;
 use App\Models\Archivo;
+use App\Models\Categoria;
 use App\Models\Slate;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -166,6 +168,26 @@ class SlateController extends Controller
         $this->authorize('view', $slate);
 
         return view('slates.show-to-user', compact('slate'));
+    }
+
+    public function edit(Slate $slate)
+    {
+        $this->authorize('update', $slate);
+        $categorias = Categoria::all();
+
+        return view('slates.edit', compact('slate', 'categorias'));
+    }
+
+    public function update(UpdateSlateRequest $request, Slate $slate)
+    {
+        $slate->update($request->except('pdf_documentacion'));
+
+        if ($request->file('pdf_documentacion')) {
+            $slate->archivo()->delete();
+            $this->uploadFile($request, $slate, 'pdf_documentacion', 4);
+        }
+
+        return redirect()->route('slates.show', $slate)->with('info', 'Slate actualizado correctamente');
     }
 
 }

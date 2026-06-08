@@ -24,4 +24,9 @@ class SlatePolicy
             true :
             false;
     }
+
+    public function update(User $user, Slate $slate)
+    {
+        return $user->hasRole('admin');
+    }
 }
