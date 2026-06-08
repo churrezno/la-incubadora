@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build && mkdir -p public/build/css public/build/js && cp public/build/assets/app-*.css public/build/css/app.css && cp public/build/assets/app-*.js public/build/js/app.js"
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",

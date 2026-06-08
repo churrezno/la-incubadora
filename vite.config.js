@@ -11,4 +11,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: false,  // Prevents hardcoded localhost
+        hmr: false,   // Disables HMR in production
+    },
+    build: {
+        manifest: true,
+    },
 });

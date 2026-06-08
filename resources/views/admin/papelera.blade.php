@@ -37,7 +37,7 @@
 
 
 @section('css')
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <x-assets />
 @stop
 
 @section('js')

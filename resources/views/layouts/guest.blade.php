@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}">
 
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+            <x-assets />
 
 
         <!-- Styles -->
