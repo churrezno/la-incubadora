@@ -15,6 +15,13 @@ export default defineConfig({
         host: false,  // Prevents hardcoded localhost
         hmr: false,   // Disables HMR in production
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'legacy-js-api'],
+            },
+        },
+    },
     build: {
         manifest: true,
     },
