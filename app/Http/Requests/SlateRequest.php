@@ -21,7 +21,10 @@ class SlateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [];
+
+        if ($this->input('accion') == 'enviar') {
+            $rules = [
                 'productor' => 'required',
                 'fecha_nac_productor' => 'required|date',
                 'sexo_productor' => 'required',
@@ -30,8 +33,20 @@ class SlateRequest extends FormRequest
                 'ciudad_productor' => 'required',
                 'pais_productor' => 'required',
                 'email_productor' => 'required|email',
-                'pdf_documentacion' => 'required',
+                'switch_acepta_bases' => 'required|boolean',
+                'switch_acepta_politica' => 'required|boolean',
             ];
+
+            $slate = $this->route('slate');
+
+            if ($slate && $slate->archivo()->where('archivo_tipo_id', 4)->exists()) {
+                $rules['pdf_documentacion'] = 'nullable';
+            } else {
+                $rules['pdf_documentacion'] = 'required';
+            }
+        }
+
+        return $rules;
     }
 
     public function messages() {
