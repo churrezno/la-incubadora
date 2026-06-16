@@ -62,8 +62,7 @@ class DatatableController extends Controller
             ->setRowClass(function ($data) {
                 $categoria = $data->categoria?->name ?? 'sin-categoria';
                 $claseCategoria = 'cat cat-'.strtolower(str_replace(' ', '-', $categoria));
-
-                return $claseCategoria;
+                return Inscripcion::find($data->id)->complete ? $claseCategoria : $claseCategoria . ' incompleta';
             })
             ->toJson();
     }
@@ -101,8 +100,7 @@ class DatatableController extends Controller
             ->setRowClass(function ($data) {
                 $categoria = $data->categoria?->name ?? 'sin-categoria';
                 $claseCategoria = 'cat cat-'.strtolower(str_replace(' ', '-', $categoria));
-
-                return $claseCategoria;
+                return Slate::find($data->id)->complete ? $claseCategoria : $claseCategoria . ' incompleta';
             })
             ->toJson();
     }
