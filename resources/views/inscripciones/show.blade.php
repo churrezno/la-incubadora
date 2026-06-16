@@ -7,11 +7,7 @@
 
 @section('content')
 
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>        
-    @endif
+    <x-alert />
 
 <div class="container ms-0 pt-3">
     @role('admin')

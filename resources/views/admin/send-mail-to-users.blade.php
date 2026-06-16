@@ -7,9 +7,7 @@
     <h1 class="mt-5 mb-4 pt-3">Enviar email a usuarios</h1>
 
     @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>  
+        <x-alert />
     
     @else
         <form action="{{ route('send.mail.store') }}" method="POST" style="max-width: 800px;">

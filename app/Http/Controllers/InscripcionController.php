@@ -343,9 +343,9 @@ class InscripcionController extends Controller
         if ($inscripcion != null && ! $isAdmin) {
 
             if ($inscripcion->user_id != $user->id) {
-                return redirect()->route('home')->with('info', '¡Esa inscripción no te pertenece!');
+                return redirect()->route('home')->with('info', '¡Esa inscripción no te pertenece!')->with('alert_type', 'warning');
             } elseif ($inscripcion->complete) {
-                return redirect()->route('home')->with('info', 'La inscripción "'.$inscripcion->titulo.'" ya está enviada y no se puede editar.');
+                return redirect()->route('home')->with('info', 'La inscripción "'.$inscripcion->titulo.'" ya está enviada y no se puede editar.')->with('alert_type', 'warning');
             }
         }
 

@@ -4,11 +4,7 @@
 
 @section('content')
 
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>
-    @endif
+    <x-alert />
 
 <div class="container ms-0 pt-3">
     <div class="clearfix">
@@ -86,7 +82,7 @@
 
                 @if( $documentacion = $slate->archivo()->where('archivo_tipo_id', 4)->first() )
                     <div class="mb-3">
-                        <a href="{{ Storage::url($documentacion->url) }}" target="_blank" class="btn btn-sm btn-secondary">
+                        <a href="{{ Storage::url($documentacion->url) }}" target="_blank" class="btn btn-negro">
                             <i class="fa-regular fa-fw fa-file-pdf"></i> Ver PDF actual
                         </a>
                         <small class="d-block text-muted mt-1">Sube un nuevo archivo para reemplazar el actual</small>

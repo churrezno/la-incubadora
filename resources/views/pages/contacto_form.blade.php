@@ -3,9 +3,7 @@
     <h3 class="mb-4">Déjanos un mensaje</h3>
 
     @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>  
+        <x-alert />
     
     @else
         <form action="{{ route('contacto.store') }}" method="POST" style="max-width: 420px;">
