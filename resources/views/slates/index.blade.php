@@ -227,6 +227,14 @@
                 table.column(0).search('').draw();
             });
 
+            $('button#completa').on('click', function () {
+                filterIncludeExcludeMulti('', ['descartada', 'incompleta']);
+            });
+
+            $('button#incompleta').on('click', function () {
+                filterIncludeExcludeMulti('incompleta', ['descartada']);
+            });
+
             $('button#descartada').on('click', function () {
                 filterIncludeExcludeMulti('cat-descartada', []);
             });
