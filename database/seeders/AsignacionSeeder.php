@@ -35,12 +35,12 @@ class AsignacionSeeder extends Seeder
                 Valoracion::create([
                     'asignacion_id' => $asignacion->id,
                     'guion' => fake()->paragraph(2),
-                    'puntos_guion' => fake()->randomInt(0, 20) / 2,
+                    'puntos_guion' => fake()->numberBetween(0, 20) / 2,
                     'financiacion' => fake()->paragraph(2),
-                    'puntos_financiacion' => fake()->randomInt(0, 20) / 2,
+                    'puntos_financiacion' => fake()->numberBetween(0, 20) / 2,
                     'solicitante' => fake()->paragraph(2),
-                    'puntos_solicitante' => fake()->randomInt(0, 20) / 2,
-                    'puntos_total' => fake()->randomInt(0, 20) / 2,
+                    'puntos_solicitante' => fake()->numberBetween(0, 20) / 2,
+                    'puntos_total' => fake()->numberBetween(0, 20) / 2,
                 ]);
             }
         }
@@ -58,7 +58,7 @@ class AsignacionSeeder extends Seeder
                 ValoracionSlate::create([
                     'asignacion_id' => $asignacion->id,
                     'comentarios' => fake()->paragraph(2),
-                    'puntos' => fake()->randomInt(0, 20) / 2,
+                    'puntos' => fake()->numberBetween(0, 20) / 2,
                 ]);
             }
         }
