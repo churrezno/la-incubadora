@@ -63,14 +63,89 @@ class SlateController extends Controller
     }
 
     
-    public function store(SlateRequest $request, ?Slate $slate = null)
+    /* public function store(SlateRequest $request, ?Slate $slate = null)
     {
-        $request->merge(['user_id' => auth()->user()->id, 'categoria_id' => 1]);
-        $slate = Slate::create($request->except('pdf_documentacion'));
+        $idSlate = ($slate !== null) ?
+                        $slate->id :
+                        null;
+
+        $request->merge([
+            'user_id' => $slate->user_id ?? auth()->user()->id,
+            'categoria_id' => $request->categoria_id ?? 1,
+        ]);
+
+        if ($idSlate == null) {
+            $slate = Slate::create($request->except('pdf_documentacion'));
+        } else {
+            $slate = Slate::find($idSlate);
+            $slate->update($request->except('slate_id', 'pdf_documentacion'));
+        }        
 
         $this->uploadFile($request, $slate, 'pdf_documentacion', 4);
 
-        return redirect()->route('home')->with('success', 'Perfil creado correctamente :)');
+        
+        if ($user->hasRole('admin')) {
+            return redirect()->route('slates.index');
+        } else {
+            if ($request->accion == 'guardar') {
+                return redirect()->route('home');
+            } elseif ($request->accion == 'enviar') {
+                // Send mail to user confirming Inscripcion is OK
+                //Mail::to($user->email)->send(new SendConfirmationMailToUserMailable($user, $slate));
+
+                return redirect()->route('home')->with('success', 'Perfil de Slate creado correctamente. No podrás editar la información.');
+            }
+        }
+    } */
+
+    public function create(?Slate $slate = null)
+    {
+        return $this->authorizeEditSlate($slate);
+    }
+
+    public function postCreate(SlateRequest $request, ?Slate $slate = null)
+    {        
+        $idSlate = ($slate !== null) ?
+                        $slate->id :
+                        null;
+
+        $request->merge([
+            'user_id' => $slate->user_id ?? auth()->user()->id,
+            'categoria_id' => $request->categoria_id ?? 1,
+        ]);
+
+
+        // Check finished editing => Perfil completo
+        if ($request->accion == 'enviar') {
+            // Set Slate as COMPLETO
+            $request->merge(['complete' => true]);
+        }
+
+        $request = $this->updateSwitches($request, ['switch_acepta_bases', 'switch_acepta_politica']);
+
+        if ($idSlate == null) {
+            $slate = Slate::create($request->except('pdf_documentacion', 'accion'));
+        } else {
+            $slate = Slate::find($idSlate);
+            $slate->update($request->except('slate_id', 'pdf_documentacion', 'accion'));
+        }        
+
+        $this->uploadFile($request, $slate, 'pdf_documentacion', 4);
+
+        $user = auth()->user();
+        
+        if ($user->hasRole('admin')) {
+            return redirect()->route('slates.index');
+        } else {
+            if ($request->accion == 'guardar') {
+                return redirect()->route('home');
+            } elseif ($request->accion == 'enviar') {
+                // Send mail to user confirming Inscripcion is OK
+                //Mail::to($user->email)->send(new SendConfirmationMailToUserMailable($user, $slate));
+
+                return redirect()->route('home')->with('info', 'Perfil de Slate creado correctamente. No podrás editar la información.');
+            }
+        }
     }
 
 
@@ -138,7 +213,6 @@ class SlateController extends Controller
         }
     }
 
-
     public function uploadFile($request, $slate, $inputName, $fileType)
     {
 
@@ -154,7 +228,6 @@ class SlateController extends Controller
         }
     }
 
-
     public function updateCategory(Request $request, Slate $slate)
     {
 
@@ -162,6 +235,17 @@ class SlateController extends Controller
         $slate->save();
     }
 
+    public function updateSwitches($request, $arraySwitches)
+    {
+
+        foreach ($arraySwitches as $switch) {
+            if ($request[$switch] == null) {
+                $request->merge([$switch => false]);
+            }
+        }
+
+        return $request;
+    }
 
     public function showToUser(Slate $slate)
     {
@@ -190,4 +274,23 @@ class SlateController extends Controller
         return redirect()->route('slates.show', $slate)->with('info', 'Slate actualizado correctamente');
     }
 
+    public function authorizeEditSlate($slate)
+    {
+
+        $user = auth()->user();
+        $isAdmin = $user->hasRole('admin');
+        $numSlatesUser = Slate::where('user_id', $user->id)->count();
+        $categorias = Categoria::all();
+
+        if ($slate != null && ! $isAdmin) {
+
+            if ($slate->user_id != $user->id) {
+                return redirect()->route('home')->with('info', '¡Ese perfil no te pertenece!')->with('alert_type', 'warning');
+            } elseif ($slate->complete) {
+                return redirect()->route('home')->with('info', 'El perfil de"'.$slate->productor.'" ya está enviado y no se puede editar.')->with('alert_type', 'warning');
+            }
+        }
+
+        return view('slates.create', compact('slate', 'numSlatesUser', 'categorias', 'isAdmin'));
+    }
 }

@@ -24,12 +24,16 @@ return new class extends Migration
             $table->string('pais_productor', 255)->nullable();
             $table->string('email_productor', 80)->nullable();
             $table->string('web_productor', 255)->nullable();
+            $table->boolean('switch_acepta_bases')->default(false);
+            $table->boolean('switch_acepta_politica')->default(false);
 
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('categoria_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+
+            $table->boolean('complete')->default(false);
 
             $table->timestamps();
 
