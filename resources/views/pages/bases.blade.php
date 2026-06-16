@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1 class="mb-5">Bases reguladoras de la convocatoria <br>de la 9ª edición de La Incubadora-ECAM Industria</h1>
+    <h1 class="mb-5">Bases reguladoras de la convocatoria <br>de La Incubadora 10 - ECAM Industria</h1>
 
     <h3 class="mt-3">1. PRESENTACIÓN</h3>
     <p>La Escuela de Cinematografía y del Audiovisual de la Comunidad de Madrid (en adelante, “ECAM”), convoca a la participación en <strong>La Incubadora</strong>, un programa de desarrollo de proyectos cinematográficos dirigido a productores/as, directores/as y guionistas enmarcado en el programa de <strong>ECAM Industria.</strong></p>

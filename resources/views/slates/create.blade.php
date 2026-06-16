@@ -100,7 +100,7 @@
                 <h5 class="mt-5 mb-3 required required-tag">Aceptación de las bases</h5>
                 <div class="form-check form-switch mb-3">
                     <input class="form-check-input fs-6" type="checkbox" role="switch" id="switch_acepta_bases"  name="switch_acepta_bases" value=1 {{ ( $slate?->switch_acepta_bases == 1 ) ? 'checked' : '' }}>
-                    <label class="form-check-label" for="switch_acepta_bases">Confirmo que toda la información incluida sobre el proyecto es verídica. He entendido y acepto las <a href="{{ route('bases') }}">bases de participación</a> de la Incubadora 10.</label>
+                    <label class="form-check-label" for="switch_acepta_bases">Confirmo que toda la información incluida sobre el proyecto es verídica. He entendido y acepto las <a href="{{ route('bases') }}">bases de participación</a> de La Incubadora 10.</label>
                 </div>
                 <x-ecam.error name="switch_acepta_bases" />
             </div>
