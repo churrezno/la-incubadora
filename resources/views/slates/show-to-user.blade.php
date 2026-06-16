@@ -3,17 +3,13 @@
     
         <div class="row align-items-start">
             <div class="col">
-                <h1 class="mb-3">{{ Str::ucfirst($slate->titulo) }}</h1>
-            </div>
-            <div class="col">
-                <div class="image-wrapper">
-                    @php
-                        $imageUrl = Storage::url('/images/portada_default.jpg');
-                        if( $portada = $slate->archivo()->where('archivo_tipo_id', 1)->first() )
-                            $imageUrl = Storage::url($portada->url);
-                    @endphp
-                    <img src="{{ $imageUrl }}" class="portada" alt="Portada">
-                </div>
+                @if ( !$slate->complete )
+                    <div class="txt-rojo mb-n1 fw-medium">
+                        <i class="fa-solid fa-fw fa-exclamation-triangle"></i>
+                        INCOMPLETO
+                    </div>
+                @endif
+                <h1 class="mb-3">{{ Str::ucfirst($slate->productor) }}</h1>
             </div>
         </div>
     

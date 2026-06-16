@@ -6,11 +6,7 @@
 
 @section('content')
 
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{ session('info') }}</strong>
-        </div>        
-    @endif
+    <x-alert />
 
 <div class="container ms-0 pt-3">
     @role('admin')
@@ -22,6 +18,12 @@
 
     <div class="row align-items-start">
         <div class="col">
+            @if ( !$slate->complete )
+                <div class="txt-rojo mb-n1 fw-medium">
+                    <i class="fa-solid fa-fw fa-exclamation-triangle"></i>
+                    INCOMPLETO
+                </div>
+            @endif
             <h1 class="mb-3">{{ Str::ucfirst($slate->productor) }}</h1>
             <p class="data_title">Autor</p>
             <p class="data_text">{{ $slate->user->name }}</p>
