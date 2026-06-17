@@ -2,7 +2,18 @@
 
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand" href={{ Auth::user()?->hasRole('admin') ? '/admin' : '/' }}>
+        @php
+            $redirectUrl = '/';
+            if (Auth::user()) {
+                if (Auth::user()->hasRole('admin')) {
+                    $redirectUrl = '/admin';
+                } elseif (Auth::user()->hasRole(['solicitante', 'inscrito', 'slate'])) {
+                    $redirectUrl = '/home';
+                }
+            }
+        @endphp
+        <a class="navbar-brand" href="{{ $redirectUrl }}">
+        {{-- <a class="navbar-brand" href={{ Auth::user()?->hasRole('admin') ? '/admin' : '/' }}> --}}
             <x-ecam.logo/>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -12,6 +23,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
             {{-- User --}}
+            <ul class="navbar-nav">
+                @guest
+                    <x-nav-link href="{{ route('login') }}" style="color: black;">
+                        <i class="fa-solid fa-fw fa-user me-1"></i> Inicia sesión
+                    </x-nav-link>
+                @endguest
+            </ul>
+
             <ul class="navbar-nav">
                 @auth
                     <x-dropdown id="settingsDropdown">

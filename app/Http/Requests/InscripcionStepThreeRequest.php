@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Inscripcion;
 
 class InscripcionStepThreeRequest extends FormRequest
 {
@@ -22,12 +21,12 @@ class InscripcionStepThreeRequest extends FormRequest
      */
     public function rules(): array
     {
-        if($_REQUEST['accion'] == 'guardar')
+        if($this->input('accion') == 'guardar')
             $rules = [
                 'otros_programas' => 'required_if_accepted:switch_otros_programas'
             ];
 
-        elseif ($_REQUEST['accion'] == 'enviar') {
+        elseif ($this->input('accion') == 'enviar') {
             $rules = [
                 'biofilmografia_director' => 'required',
                 'link_1' => 'nullable|url',
@@ -52,15 +51,12 @@ class InscripcionStepThreeRequest extends FormRequest
                 'switch_acepta_bases' => 'required|boolean',
                 'switch_acepta_politica' => 'required|boolean'
             ];
-            
-            // Al editar -> Si no tiene PDF guion asociado, hacerlo obligatorio.
-            if ( !Inscripcion::find( $this->route('inscripcion')->id )
-                                ->archivos()
-                                ->where('archivo_tipo_id', 2)
-                                ->first() )
-                $rules += [                
-                    'pdf_guion' => 'required',
-                ];
+
+            if ($this->route('inscripcion')->archivos()->where('archivo_tipo_id', 2)->exists()) {
+                $rules['pdf_guion'] = 'nullable';
+            } else {
+                $rules['pdf_guion'] = 'required';
+            }
         }
 
 

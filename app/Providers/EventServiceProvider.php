@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\Asignacion;
 use App\Models\Inscripcion;
+use App\Models\Slate;
 use App\Models\User;
 use App\Models\Valoracion;
+use App\Models\ValoracionSlate;
 use App\Observers\AsignacionObserver;
 use App\Observers\InscripcionObserver;
 use App\Observers\UserObserver;
@@ -38,13 +40,7 @@ class EventServiceProvider extends ServiceProvider
             $user = auth()->user();
 
             if ($user->hasRole('admin')) {
-                $event->menu->add([
-                    'text' => 'Usuarios',
-                    'url' => 'admin/users',
-                    'icon' => 'fa-solid fa-fw fa-user',
-                    'label' => User::count(),
-                    'label_color' => 'dark',
-                ]);
+                $event->menu->add(['header' => 'DESARROLLO']);
 
                 $event->menu->add([
                     'text' => 'Inscripciones',
@@ -57,8 +53,36 @@ class EventServiceProvider extends ServiceProvider
                 $event->menu->add([
                     'text' => 'Valoraciones',
                     'url' => 'admin/valoraciones',
-                    'icon' => 'fa-solid fa-fw fa-certificate',
+                    'icon' => 'fa-solid fa-fw fa-star-half-stroke',
                     'label' => Valoracion::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add(['header' => 'SLATE']);
+
+                $event->menu->add([
+                    'text' => 'Productores',
+                    'url' => 'admin/slates',
+                    'icon' => 'fa-solid fa-fw fa-money-bill-wave',
+                    'label' => Slate::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add([
+                    'text' => 'Valoraciones',
+                    'url' => 'admin/valoraciones-slate',
+                    'icon' => 'fa-solid fa-fw fa-ranking-star',
+                    'label' => ValoracionSlate::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add(['header' => 'ADMINISTRACION']);
+
+                $event->menu->add([
+                    'text' => 'Usuarios',
+                    'url' => 'admin/users',
+                    'icon' => 'fa-solid fa-fw fa-user',
+                    'label' => User::count(),
                     'label_color' => 'dark',
                 ]);
 
@@ -78,6 +102,16 @@ class EventServiceProvider extends ServiceProvider
                     'text' => 'Inscripciones',
                     'url' => 'admin/inscripciones',
                     'icon' => 'fa-solid fa-fw fa-video',
+                    'label' => Slate::count(),
+                    'label_color' => 'dark',
+                ]);
+
+                $event->menu->add([
+                    'text' => 'Slates',
+                    'url' => 'admin/slates',
+                    'icon' => 'fa-solid fa-fw fa-money-bill-wave',
+                    'label' => Slate::count(),
+                    'label_color' => 'dark',
                 ]);
             }
         });

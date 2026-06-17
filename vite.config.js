@@ -11,4 +11,19 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    server: {
+        host: false,  // Prevents hardcoded localhost
+        hmr: false,   // Disables HMR in production
+        cors: true,
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'legacy-js-api'],
+            },
+        },
+    },
+    build: {
+        manifest: true,
+    },
 });

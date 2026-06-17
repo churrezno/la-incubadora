@@ -24,12 +24,20 @@ class Inscripcion extends Model
 
     public function asignaciones() {
 
-        return $this->hasMany('App\Models\Asignacion');
+        return $this->morphMany(Asignacion::class, 'asignable');
     }
 
-    public function valoraciones() {
+    public function valoraciones()
+    {
+        return Valoracion::whereHas('asignacion', function ($query) {
+            $query->where('asignable_type', 'App\Models\Inscripcion')
+                  ->where('asignable_id', $this->id);
+        });
+    }
 
-        return $this->hasManyThrough('App\Models\Valoracion', 'App\Models\Asignacion');
+    public function getValoracionesAttribute()
+    {
+        return $this->valoraciones()->get();
     }
 
     public function categoria() {
@@ -37,9 +45,9 @@ class Inscripcion extends Model
         return $this->belongsTo('App\Models\Categoria');
     }
 
-    public function archivos() {
-
-        return $this->hasMany('App\Models\Archivo');
+    public function archivos()
+    {
+        return $this->morphMany(Archivo::class, 'archivable');
     }
 
     public function archivo_tipo() {

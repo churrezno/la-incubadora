@@ -21,13 +21,18 @@ class Asignacion extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function inscripcion() {
+    public function asignable() {
 
-        return $this->belongsTo('App\Models\Inscripcion');
+        return $this->morphTo();
     }
 
     public function valoracion() {
 
         return $this->hasOne('App\Models\Valoracion');
+    }
+
+    public function valoracionSlate() {
+
+        return $this->hasOne('App\Models\ValoracionSlate');
     }
 }

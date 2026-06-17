@@ -21,11 +21,14 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('archivos');
 
         $this->call(RoleSeeder::class);
-        User::factory(50)->create();
+        User::factory(5)->create();
         $this->call(AdminSeeder::class);
+        $this->call(ComiteSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ArchivoTipoSeeder::class);
         $this->call(InscripcionSeeder::class);
+        $this->call(SlateSeeder::class);
         $this->call(AsignacionSeeder::class);
+        $this->call(ValoracionSlateSeeder::class);
     }
 }

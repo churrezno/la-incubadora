@@ -13,9 +13,9 @@ class Archivo extends Model
 
     protected $guarded = [];
 
-    public function inscripcion() {
-
-        return $this->belongsTo('App\Models\Inscripcion');
+    public function archivable()
+    {
+        return $this->morphTo();
     }
 
     public function archivo_tipo() {

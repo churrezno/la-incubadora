@@ -1,4 +1,4 @@
-/.DS_Store
+.DS_Store
 /.idea
 /.vscode
 /.zed
@@ -20,9 +20,11 @@
 /vendor
 /public/build
 /public/hot
+/public/storage
 /storage/*.key
 /storage/app/*
 !/storage/app/.gitignore
+/storage/app/public
 /storage/debugbar
 /storage/framework/cache/*
 !/storage/framework/cache/.gitignore

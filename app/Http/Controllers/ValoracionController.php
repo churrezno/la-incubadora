@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
 
 use App\Http\Requests\StoreValoracionRequest;
+use App\Http\Requests\StoreValoracionSlateRequest;
 use App\Models\Asignacion;
 use App\Models\Valoracion;
+use App\Models\ValoracionSlate;
 
 class ValoracionController extends Controller
 {
@@ -14,11 +16,9 @@ class ValoracionController extends Controller
     {
 
         $heads = [
-            ['label' => 'Fecha', 'width' => 10],
-            //'Asignacion ID',
-            //'Asignacion',
-            ['label' => 'Comité', 'width' => 10],
-            ['label' => 'Título', 'width' => 15],
+            ['label' => 'Fecha'],
+            ['label' => 'Comité'],
+            ['label' => 'Título', 'width' => 20],
             'Valoración',
         ];
 
@@ -32,8 +32,6 @@ class ValoracionController extends Controller
             ],
             'columns' => [
                 ['data' => 'fecha'],
-                //['data' => 'asignacion_id'],
-                //['data' => 'asignacion'],
                 ['data' => 'comite', 'width' => '100px'],
                 ['data' => 'titulo', 'class' => 'titulo'],
                 ['data' => 'valoracion'],
@@ -89,6 +87,33 @@ class ValoracionController extends Controller
             if($errorCode == 1062){
                 return redirect()->back()->with('info', 'Ooooooops!! Entrada ya existente :(');
             }
+        }
+
+    }
+
+
+    public function storeSlate(StoreValoracionSlateRequest $request, Asignacion $asignacion)
+    {
+        try
+        {
+            $existing = $asignacion->valoracionSlate;
+            
+            if ($existing) {
+                $existing->update($request->only(['comentarios', 'puntos']));
+            } else {
+                ValoracionSlate::create([
+                    'asignacion_id' => $asignacion->id,
+                    'comentarios' => $request->comentarios,
+                    'puntos' => $request->puntos,
+                ]);
+            }
+            
+            return redirect()->back()->with('info', 'Valoración guardada correctamente :)');
+
+        }   
+        catch (\Exception $e)
+        {
+            return redirect()->back()->with('error', 'Error al guardar la valoración: ' . $e->getMessage())->withInput();
         }
 
     }

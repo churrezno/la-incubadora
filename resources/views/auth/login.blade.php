@@ -16,7 +16,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-3">
-                    <x-label value="{{ __('Email') }}" />
+                    <x-label value="{{ __('Email') }}" class="required" />
 
                     <x-input class="{{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
                                 name="email" :value="old('email')" required />
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <x-label value="{{ __('Password') }}" />
+                    <x-label value="{{ __('Password') }}" class="required" />
 
                     <x-input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password"
                                 name="password" required autocomplete="current-password" />

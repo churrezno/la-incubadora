@@ -18,5 +18,6 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'solicitante']);
         Role::create(['name' => 'inscrito']);
         Role::create(['name' => 'comite']);
+        Role::create(['name' => 'slate']);
     }
 }

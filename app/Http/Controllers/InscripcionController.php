@@ -153,10 +153,12 @@ class InscripcionController extends Controller
     // FORCE DELETE FROM THRASH BIN
     public function forceDelete($id)
     {
-        $user = Inscripcion::withTrashed()->findOrFail($id);
+        $inscripcion = Inscripcion::withTrashed()->findOrFail($id);
 
         try {
-            $user->forceDelete();
+            $inscripcion->asignaciones()->forceDelete();
+            $inscripcion->archivos()->delete();
+            $inscripcion->forceDelete();
 
             return response()->json(['message' => 'Inscripción eliminada permanentemente'], 200);
 
@@ -309,7 +311,8 @@ class InscripcionController extends Controller
 
             Archivo::create([
                 'url' => $fileUrl,
-                'inscripcion_id' => $inscripcion->id,
+                'archivable_id' => $inscripcion->id,
+                'archivable_type' => Inscripcion::class,
                 'archivo_tipo_id' => $fileType,
             ]);
         }
@@ -340,9 +343,9 @@ class InscripcionController extends Controller
         if ($inscripcion != null && ! $isAdmin) {
 
             if ($inscripcion->user_id != $user->id) {
-                return redirect()->route('home')->with('info', '¡Esa inscripción no te pertenece!');
+                return redirect()->route('home')->with('info', '¡Esa inscripción no te pertenece!')->with('alert_type', 'warning');
             } elseif ($inscripcion->complete) {
-                return redirect()->route('home')->with('info', 'La inscripción "'.$inscripcion->titulo.'" ya está enviada y no se puede editar.');
+                return redirect()->route('home')->with('info', 'La inscripción "'.$inscripcion->titulo.'" ya está enviada y no se puede editar.')->with('alert_type', 'warning');
             }
         }
 

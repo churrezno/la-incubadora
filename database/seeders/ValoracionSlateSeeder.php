@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Valoracion;
+use App\Models\ValoracionSlate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ValoracionSeeder extends Seeder
+class ValoracionSlateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Valoracion::factory(25)->create();
+        // ValoracionesSlate are already created in AsignacionSeeder
     }
 }
