@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Confirmación de inscripción en La Incubadora</title>
+        <title>Confirmación de inscripción en La Incubadora - DESARROLLO</title>
     </head>
     <body>
         <p>Hola, {{ $user->name }}</p>
@@ -16,6 +16,6 @@
         </ul>
 
         <p>¡Nos vemos pronto!</p>
-        <img src="https://ecam-industria.es/media/LOGO-ECAM-INDUSTRIA-png.png" style="width: 120px; margin-top: 20px;" alt="ECAM">
+        <img src="https://ecam.es/media/logo_La_Incubadora_negro_H.png" style="width: 300px; margin-top: 20px;" alt="ECAM">
     </body>
 </html>

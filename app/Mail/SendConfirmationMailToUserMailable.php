@@ -33,7 +33,7 @@ class SendConfirmationMailToUserMailable extends Mailable implements ShouldQueue
     {
         return new Envelope(
             from: new Address('ecam@ecam.es', 'La Incubadora | ECAM'),
-            subject: 'Confirmación de Inscripción en La Incubadora',
+            subject: 'Confirmación de Inscripción en La Incubadora - DESARROLLO',
         );
     }
 
