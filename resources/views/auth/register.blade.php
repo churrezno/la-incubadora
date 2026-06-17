@@ -13,13 +13,13 @@
                 <div class="mb-4">
                     <p class="mt-2 mb-1 required required-tag">Quiero inscribirme para:</p>
                     <div class="form-check ms-3">
-                        <input class="form-check-input" type="radio" name="rol_incubadora" id="solicitante" value="solicitante">
+                        <input class="form-check-input" type="radio" name="rol_incubadora" id="solicitante" value="solicitante" {{ old('rol_incubadora', request('rol')) == 'solicitante' ? 'checked' : '' }}>
                         <label class="form-check-label" for="desarrollo">
                             <strong>DESARROLLO</strong> (proyectos de largometraje)
                         </label>
                     </div>
                     <div class="form-check ms-3">
-                        <input class="form-check-input" type="radio" name="rol_incubadora" id="slate" value="slate">
+                        <input class="form-check-input" type="radio" name="rol_incubadora" id="slate" value="slate" {{ old('rol_incubadora', request('rol')) == 'slate' ? 'checked' : '' }}>
                         <label class="form-check-label" for="slate">
                             <strong>SLATE</strong> (productoras emergentes)
                         </label>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <style>
-        .intro p {
+        .intro p, .intro ul {
             font-size: 1.125em;
         }
         .intro h1 {
@@ -24,6 +24,13 @@
             text-transform: uppercase;
             margin-bottom: .5em;
         }
+        h4 small{
+            font-size: .75em;
+        }
+        h4 strong{
+            display: block;
+            font-size: 1.375em;
+        }
 
         .btn {
             width: 360px;
@@ -38,7 +45,11 @@
                         <small>Bienvenidos a la</small><br />
                         <strong>INCUBADORA 10</strong>
                     </h1>
-                    <p>La Incubadora es un programa de capacitación y desarrollo de proyectos cinematográficos dirigido a productores emergentes residentes en España. El programa apoya a productores, que podrán participar a través de dos líneas distintas: <strong>La Incubadora – Desarrollo</strong> (para equipos formados por producción y dirección con un largometraje en desarrollo) y <strong>La Incubadora – Slate</strong> (para productoras emergentes que deseen desarrollar su carrera profesional y empresarial).</p>
+                    <p>La Incubadora es un programa de capacitación y desarrollo de proyectos cinematográficos dirigido a productores emergentes residentes en España. El programa apoya a productores, que podrán participar a través de dos líneas distintas:</p>
+                    <ul>
+                        <li><strong>La Incubadora – Desarrollo</strong> para equipos formados por producción y dirección con un largometraje en desarrollo</li>
+                        <li><strong>La Incubadora – Slate</strong> para productoras emergentes que deseen desarrollar su carrera profesional y empresarial</li>
+                    </ul>
                     <p>Sus objetivos son fortalecer e impulsar el desarrollo profesional y personal de las productoras seleccionadas, brindarles apoyo, generar impacto en sus carreras y establecer una red sólida de conocimientos. La Incubadora busca incentivar la coproducción y la colaboración entre participantes, la transmisión de conocimiento entre pares y aspira a convertirse en una red colaborativa que trascienda la participación puntual en el programa.</p>
                 </div>
             </div>
@@ -46,24 +57,29 @@
             <div class="row mt-4">
                 <div class="col col-md-6">
                     <div class="wrapper-option bg-gris-0 ">
-                        <h4>La Incubadora - <strong>Desarrollo</strong></h4>
+                        <h4><small>La Incubadora</small>
+                            <strong>Desarrollo</strong>
+                        </h4>
                         <div class="txt">
                             <p>Convocatoria para <strong>proyectos de largometraje en desarrollo.</strong> Podrán participar equipos formados por producción y dirección que cuenten con, al menos, una versión de guion. Si estás trabajando mano a mano con un director o directora, quieres darle un impulso mientras adquieres herramientas para afianzar tu carrera, este es el sitio.</p>
+                        </div>
+                        <div class="col text-start mt-4">
+                            <a href="{{ route('register', ['rol' => 'solicitante']) }}" class="btn btn-rojo">Regístrate en Desarrollo</a>
                         </div>
                     </div>
                 </div>
                 <div class="col col-md-6">
                     <div class="wrapper-option bg-gris-1 ">
-                        <h4>La Incubadora - <strong>Slate</strong></h4>
+                        <h4><small>La Incubadora</small>
+                            <strong>Slate</strong>
+                        </h4>
                         <div class="txt">
                             <p>Convocatoria para <strong>productoras emergentes</strong> que participarán a título individual o con su empresa. Si estás trabajando con slate de proyectos, quieres dar un salto en tu carrera y afianzar tu plan de negocio, este es el sitio.</p>
                         </div>
+                        <div class="col text-start mt-4">
+                            <a href="{{ route('register', ['rol' => 'slate']) }}" class="btn btn-rojo">Regístrate en Slate</a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <a href="{{ route('register') }}" class="btn btn-rojo">Regístrate</a>
                 </div>
             </div>
             <div class="row mt-5">
