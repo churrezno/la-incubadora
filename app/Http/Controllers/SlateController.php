@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SlateRequest;
 use App\Http\Requests\UpdateSlateRequest;
+use App\Mail\SendConfirmationMailToSlateMailable;
 use App\Models\Archivo;
 use App\Models\Categoria;
 use App\Models\Slate;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class SlateController extends Controller
@@ -140,8 +142,8 @@ class SlateController extends Controller
             if ($request->accion == 'guardar') {
                 return redirect()->route('home');
             } elseif ($request->accion == 'enviar') {
-                // Send mail to user confirming Inscripcion is OK
-                //Mail::to($user->email)->send(new SendConfirmationMailToUserMailable($user, $slate));
+                // Send mail to user confirming Slate is OK
+                Mail::to($user->email)->send(new SendConfirmationMailToSlateMailable($user, $slate));
 
                 return redirect()->route('home')->with('info', 'Perfil de Slate creado correctamente. No podrás editar la información.');
             }
