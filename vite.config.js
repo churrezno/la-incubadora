@@ -14,6 +14,7 @@ export default defineConfig({
     server: {
         host: false,  // Prevents hardcoded localhost
         hmr: false,   // Disables HMR in production
+        cors: true,
     },
     css: {
         preprocessorOptions: {
