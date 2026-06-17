@@ -83,7 +83,7 @@
                 </p>
                 <input class="form-control d-inline me-3" type="file" id="pdf_documentacion" name="pdf_documentacion" accept=".pdf">
                 <x-ecam.error name="pdf_documentacion" />
-                @if( $documentacion = $slate->archivo()->where('archivo_tipo_id', 4)->first() )
+                @if( $documentacion = $slate?->archivo()->where('archivo_tipo_id', 4)->first() )
                     @php                        
                         $documentacionUrl = Storage::url($documentacion->url);                
                     @endphp
