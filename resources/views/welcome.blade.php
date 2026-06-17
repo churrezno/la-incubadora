@@ -56,27 +56,27 @@
 
             <div class="row mt-4">
                 <div class="col col-md-6">
-                    <div class="wrapper-option bg-gris-0 ">
+                    <div class="wrapper-option bg-gris-1 d-flex flex-column">
                         <h4><small>La Incubadora</small>
                             <strong>Desarrollo</strong>
                         </h4>
-                        <div class="txt">
+                        <div class="txt mb-3">
                             <p>Convocatoria para <strong>proyectos de largometraje en desarrollo.</strong> Podrán participar equipos formados por producción y dirección que cuenten con, al menos, una versión de guion. Si estás trabajando mano a mano con un director o directora, quieres darle un impulso mientras adquieres herramientas para afianzar tu carrera, este es el sitio.</p>
                         </div>
-                        <div class="col text-start mt-4">
+                        <div class="text-start mt-auto">
                             <a href="{{ route('register', ['rol' => 'solicitante']) }}" class="btn btn-rojo">Regístrate en Desarrollo</a>
                         </div>
                     </div>
                 </div>
                 <div class="col col-md-6">
-                    <div class="wrapper-option bg-gris-1 ">
+                    <div class="wrapper-option bg-gris-1 d-flex flex-column">
                         <h4><small>La Incubadora</small>
                             <strong>Slate</strong>
                         </h4>
-                        <div class="txt">
+                        <div class="txt mb-3">
                             <p>Convocatoria para <strong>productoras emergentes</strong> que participarán a título individual o con su empresa. Si estás trabajando con slate de proyectos, quieres dar un salto en tu carrera y afianzar tu plan de negocio, este es el sitio.</p>
                         </div>
-                        <div class="col text-start mt-4">
+                        <div class="text-start mt-auto">
                             <a href="{{ route('register', ['rol' => 'slate']) }}" class="btn btn-rojo">Regístrate en Slate</a>
                         </div>
                     </div>
